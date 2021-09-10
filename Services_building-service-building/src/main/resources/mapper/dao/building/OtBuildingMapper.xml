@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.dao.building.mapper.OtBuildingMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lzctzk.address.dao.building.entity.OtBuilding">
+        <id column="OB_ID" property="obId"/>
+        <result column="OB_CODE" property="obCode"/>
+        <result column="OB_NAME" property="obName"/>
+        <result column="OB_ADDR" property="obAddr"/>
+        <result column="OB_LD_AREA" property="obLdArea"/>
+        <result column="OB_FLOOR_AREA" property="obFloorArea"/>
+        <result column="OB_USAGE" property="obUsage"/>
+        <result column="OB_BASE_FORM" property="obBaseForm"/>
+        <result column="OB_STRU" property="obStru"/>
+        <result column="OB_UP_FLOOR" property="obUpFloor"/>
+        <result column="OB_DOWN_FLOOR" property="obDownFloor"/>
+        <result column="OB_FLOOR_HEIGHT" property="obFloorHeight"/>
+        <result column="OB_HEIGHT" property="obHeight"/>
+        <result column="OB_DOOR_NUM" property="obDoorNum"/>
+        <result column="OB_ELEVATOR_INFO" property="obElevatorInfo"/>
+        <result column="OB_DOWN_INFO" property="obDownInfo"/>
+        <result column="OB_AIR_DEFENCE_INFO" property="obAirDefenceInfo"/>
+        <result column="OB_FIRE_CONTROL_INFO" property="obFireControlInfo"/>
+        <result column="OB_PROPERTY_UNIT" property="obPropertyUnit"/>
+        <result column="OB_PROPERTY_NO" property="obPropertyNo"/>
+        <result column="OB_COMP_DATE" property="obCompDate"/>
+        <result column="OB_DESIGN_CRITERIA" property="obDesignCriteria"/>
+        <result column="OB_DRAWING_PATH" property="obDrawingPath"/>
+        <result column="OB_STATUS" property="obStatus"/>
+        <result column="OB_GEOLOGY_INFO" property="obGeologyInfo"/>
+        <result column="OB_ADD_TIME" property="obAddTime"/>
+        <result column="OB_UPDATE_TIME" property="obUpdateTime"/>
+        <result column="OB_ISDELETE" property="obIsdelete"/>
+        <result column="OB_BZ" property="obBz"/>
+        <result column="OB_LONGITUDE" property="obLongitude"/>
+        <result column="OB_LATITUDE" property="obLatitude"/>
+        <result column="OB_AREA" property="obArea"/>
+        <result column="OB_UP_INFO" property="obUpInfo"/>
+        <result column="OB_MODEL_NAME" property="obModelName"/>
+        <result column="OB_PROPERTY_NAME" property="obPropertyName"/>
+        <result column="OB_IMAGE_INFO" property="obImageInfo"/>
+        <result column="OBJECTID" property="objectid"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        OB_ID, OB_CODE, OB_NAME, OB_ADDR, OB_LD_AREA, OB_FLOOR_AREA, OB_USAGE, OB_BASE_FORM, OB_STRU, OB_UP_FLOOR,
+        OB_DOWN_FLOOR, OB_FLOOR_HEIGHT, OB_HEIGHT, OB_DOOR_NUM, OB_ELEVATOR_INFO, OB_DOWN_INFO, OB_AIR_DEFENCE_INFO,
+        OB_FIRE_CONTROL_INFO, OB_PROPERTY_UNIT, OB_PROPERTY_NO, OB_COMP_DATE, OB_DESIGN_CRITERIA, OB_DRAWING_PATH,
+        OB_STATUS, OB_GEOLOGY_INFO, OB_ADD_TIME, OB_UPDATE_TIME, OB_ISDELETE, OB_BZ, OB_LONGITUDE, OB_LATITUDE, OB_AREA,
+        OB_UP_INFO, OB_MODEL_NAME, OB_PROPERTY_NAME, OB_IMAGE_INFO, OBJECTID
+    </sql>
+
+</mapper>

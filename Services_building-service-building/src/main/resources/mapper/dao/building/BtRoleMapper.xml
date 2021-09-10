@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.dao.com.lzctzk.address.dao.building.mapper.BtRoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lzctzk.address.dao.building.entity.BtRole">
+        <result column="ID" property="id"/>
+        <result column="NAME" property="name"/>
+        <result column="ISSYSTEM" property="issystem"/>
+        <result column="REMARK" property="remark"/>
+        <result column="PERMISSION" property="permission"/>
+        <result column="SYSTEM_ID" property="systemId"/>
+        <result column="SYSTEM_NAME" property="systemName"/>
+        <result column="RIGHTINFO" property="rightinfo"/>
+        <result column="DATAINFO" property="datainfo"/>
+        <result column="CREATE_USERID" property="createUserid"/>
+        <result column="CREATE_IP" property="createIp"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <result column="UPDATE_USERID" property="updateUserid"/>
+        <result column="UPDATE_IP" property="updateIp"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+        <result column="DATAINFOERWEI" property="datainfoerwei"/>
+        <result column="ISDELETE" property="isdelete"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, NAME, ISSYSTEM, REMARK, PERMISSION, SYSTEM_ID, SYSTEM_NAME, RIGHTINFO, DATAINFO, CREATE_USERID, CREATE_IP,
+        CREATE_TIME, UPDATE_USERID, UPDATE_IP, UPDATE_TIME, DATAINFOERWEI, ISDELETE
+    </sql>
+
+</mapper>

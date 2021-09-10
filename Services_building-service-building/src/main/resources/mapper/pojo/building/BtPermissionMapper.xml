@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.pojo.building.mapper.PermissionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lzctzk.address.dao.building.entity.BtPermission">
+        <id column="ID" property="id"/>
+        <result column="NAME" property="name"/>
+        <result column="DISPLAY_NAME" property="displayName"/>
+        <result column="FULLNAME" property="fullname"/>
+        <result column="PARENTID" property="parentid"/>
+        <result column="URL" property="url"/>
+        <result column="SORT" property="sort"/>
+        <result column="ICON" property="icon"/>
+        <result column="VISIBLE" property="visible"/>
+        <result column="NECESSARY" property="necessary"/>
+        <result column="REMARK" property="remark"/>
+        <result column="TYPE" property="type"/>
+        <result column="PERMISSION_STRING" property="permissionString"/>
+        <result column="TAG" property="tag"/>
+        <result column="LELEL" property="lelel"/>
+        <result column="TITLE" property="title"/>
+        <result column="CREATE_USERID" property="createUserid"/>
+        <result column="CREATE_IP" property="createIp"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <result column="UPDATE_USERID" property="updateUserid"/>
+        <result column="UPDATE_IP" property="updateIp"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+        <result column="SYSTEM_ID" property="systemId"/>
+        <result column="SYSTEM_NAME" property="systemName"/>
+        <result column="ISDELETE" property="isdelete"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, NAME, DISPLAY_NAME, FULLNAME, PARENTID, URL, SORT, ICON, VISIBLE, NECESSARY, REMARK, TYPE,
+        PERMISSION_STRING, TAG, LELEL, TITLE, CREATE_USERID, CREATE_IP, CREATE_TIME, UPDATE_USERID, UPDATE_IP,
+        UPDATE_TIME, SYSTEM_ID, SYSTEM_NAME, ISDELETE
+    </sql>
+    <!-- 查询总记录数 -->
+    <select id="selectCount" resultType="long">
+        select count(*)
+        from BT_PERMISSION
+    </select>
+    <!-- 查询总记录数 -->
+    <select id="selectMaxID" resultType="long">
+        select MAX (ID)
+        from BT_PERMISSION
+    </select>
+
+</mapper>

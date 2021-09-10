@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.pojo.building.mapper.CustomMapper">
+
+    <select id="getPermission" resultType="com.lzctzk.address.dao.building.entity.BtPermission" parameterType="string">
+        select
+        BT_PERMISSION.*
+        from
+        BT_PERMISSION,
+        RELA_ROLE_PERMISSION,
+        RELA_GROUP_ROLE,
+        BT_USER
+        <where>
+            BT_PERMISSION."ID" = RELA_ROLE_PERMISSION.PERMISSION_ID
+            AND RELA_ROLE_PERMISSION.ROLE_ID = RELA_GROUP_ROLE.ROLE_ID
+            AND RELA_GROUP_ROLE.DATA_GROUP_ID = BT_USER.ROLEID
+            AND BT_USER.ID = #{userId}
+            AND BT_PERMISSION.SYSTEM_ID = #{systemId}
+        </where>
+        ORDER BY
+        BT_PERMISSION.ID DESC
+    </select>
+
+    <select id="getPermissionBySelect" resultType="com.lzctzk.address.dao.building.entity.BtPermission"
+            parameterType="string">
+        select
+        BT_PERMISSION.*
+        from
+        BT_PERMISSION,
+        RELA_ROLE_PERMISSION,
+        RELA_GROUP_ROLE,
+        BT_USER
+        <where>
+            BT_PERMISSION."ID" = RELA_ROLE_PERMISSION.PERMISSION_ID
+            AND RELA_ROLE_PERMISSION.ROLE_ID = RELA_GROUP_ROLE.ROLE_ID
+            AND RELA_GROUP_ROLE.DATA_GROUP_ID = BT_USER.ROLEID
+            AND BT_USER.ID = #{userId}
+            AND BT_PERMISSION.SYSTEM_ID = #{systemId}
+            <if test="@com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(level)">
+                AND BT_PERMISSION.BP_LEVEL = #{level}
+            </if>
+            <if test="@com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(parentId)">
+                AND BT_PERMISSION.PARENTID = #{parentId}
+            </if>
+            <if test="@com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(type)">
+                AND BT_PERMISSION.BP_TYPE = #{type}
+            </if>
+        </where>
+        ORDER BY BT_PERMISSION.ID DESC
+    </select>
+
+    <select id="getDataAuth" resultType="string" parameterType="string">
+        SELECT
+        BT_DATA_AUTH.DATA_NAME
+        FROM
+        BT_DATA_AUTH,
+        RELA_ROLE_DATA_AUTH,
+        RELA_GROUP_ROLE,
+        BT_USER
+        <where>
+            BT_DATA_AUTH.ID = RELA_ROLE_DATA_AUTH.DATA_AUTH_ID
+            AND RELA_ROLE_DATA_AUTH.ROLE_ID = RELA_GROUP_ROLE.ROLE_ID
+            AND RELA_GROUP_ROLE.DATA_GROUP_ID = BT_USER.ROLEID
+            AND BT_USER.ID = #{userId}
+            AND BT_DATA_AUTH.SYSTEM_ID = #{systemId}
+        </where>
+        ORDER BY BT_DATA_AUTH.ID DESC
+
+    </select>
+</mapper>

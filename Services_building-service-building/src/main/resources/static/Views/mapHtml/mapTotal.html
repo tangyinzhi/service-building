@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>统计</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../../lib/layui/css/layui.css">
+    <link rel="stylesheet" href="../../css/changeLayui.css">
+    <link rel="stylesheet" href="../../lib/openlayer/ol.css" type="text/css">
+    <script src="../../lib/openlayer/ol.js"></script>
+    <script src="../../js/config/config.js"></script>
+    <script src="../../js/Utils/BaseURL.js"></script>
+    <script src="../../lib/layui/layui.js"></script>
+    <script src="../../js/stampMap/mapTotal.js"></script>
+    <script src="../../lib/echarts/echarts.common.min.js"></script>
+    <style>
+        .layui-form-label {
+            padding: 10px 0px 0px 20px;
+            font-weight: bolder;
+            color: #666;
+            font-size: 14px;
+            margin-left: -15px;
+            font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+        }
+        .layui-anim-upbit>dd {
+            font-size: 12px;
+            font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+        }
+        .layui-select-title{
+             font-size: 14px;
+             font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+         }
+        .layui-form-item .layui-input-inline {
+            float: left;
+            width: 160px;
+            margin-right: 0px;
+        }
+    </style>
+</head>
+<body>
+<!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+<div id="hiddenDiv" class="layui-row"  style="width: 450px;;height:300px;">
+
+    <form class="layui-form">
+        <div class="layui-form-item">
+        <label class="layui-form-label">统计字段:</label>
+        <div class="layui-input-inline" >
+            <select name="peParameter" id="peParameter" lay-filter="peParameterFilter">
+                <option value="OB_STRU">结构类型</option>
+                <option value="OB_AIR_DEFENCE_INFO">人防情况</option>
+                <option value="OB_BASE_FORM">基础形式</option>
+                <option value="OB_ELEVATOR_INFO">电梯信息</option>
+                <option value="OB_DOWN_INFO">地下空间利用信息</option>
+                <option value="OB_DESIGN_CRITERIA">设计标准</option>
+                <option value="OB_STATUS">建筑状态</option>
+                <option value="OB_COMP_DATE">建筑年限</option>
+                <option value="OB_USAGE">建筑用途</option>
+            </select>
+        </div>
+            <div class="" id="dataYear" style="display: none">
+            <label class="layui-form-label">年限值:</label>
+            <div class="layui-input-inline">
+                <input type="text" id="dataValue" name="dataValue" class="layui-input" lay-verify="number"  >
+            </div>
+            </div>
+        </div>
+
+
+    </form>
+    <div class="layui-tab">
+        <ul class="layui-tab-title">
+            <li class="layui-this">统计表</li>
+            <li>折线图</li>
+            <li>柱状图</li>
+            <li>饼状图</li>
+        </ul>
+        <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show" style="width: 440px;height:300px;">
+                <table class="layui-hide" id="demoEvent" style="width: 440px;height:300px;" lay-filter="demoEvent"></table>
+            </div>
+            <div class="layui-tab-item">
+                <div id="main" style="width: 440px;height:300px;"></div>
+            </div>
+            <div class="layui-tab-item">
+                <div id="main1" style="width: 440px;height:300px;"></div>
+            </div>
+            <div class="layui-tab-item">
+                <div id="main2" style="width: 440px;height:300px;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="barDemo">
+    <button id="print" onclick="exportClick()" class="layui-btn layui-btn-primary layui-btn-sm layui-btn-primary-change">
+        <i class="layui-icon layui-icon-export"></i>导出
+    </button>
+</script>
+</body>
+</html>

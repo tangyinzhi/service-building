@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.pojo.building.mapper.LogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lzctzk.address.dao.building.entity.BtLog">
+        <id column="ID" property="id"/>
+        <result column="LOGUSER" property="loguser"/>
+        <result column="LOG_IP" property="logIp"/>
+        <result column="LOG_TYPE" property="logType"/>
+        <result column="LOG_TIME" property="logTime"/>
+        <result column="LOG_MESSAGE" property="logMessage"/>
+        <result column="PLUG_NAME" property="plugName"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, LOGUSER, LOG_IP, LOG_TYPE, LOG_TIME, LOG_MESSAGE, PLUG_NAME
+    </sql>
+    <!-- 日志统计 -->
+    <select id="selectTolCount" resultType="java.util.HashMap" parameterType="string">
+        SELECT
+        ${clown} as clown ,
+        COUNT(ID) AS tolsum
+        FROM
+        BT_LOG
+        GROUP BY
+        ${clown}
+        ORDER BY clown DESC
+    </select>
+    <!-- 日志统计 -->
+    <select id="selectTimeTolCount" parameterType="string" resultType="java.util.HashMap">
+        SELECT
+        LOG_TIME as clown ,
+        COUNT(ID) AS tolsum
+        FROM
+        BT_LOG
+        GROUP BY
+        LOG_TIME
+        ORDER BY clown
+    </select>
+    <!-- 日志统计 -->
+    <select id="selectUserTolCount" parameterType="string" resultType="java.util.HashMap">
+        SELECT
+        LOGUSER as clown ,
+        COUNT(ID) AS tolsum
+        FROM
+        BT_LOG
+        GROUP BY
+        LOGUSER
+        ORDER BY clown
+    </select>
+    <!-- 日志统计 -->
+    <select id="selectIPTolCount" parameterType="string" resultType="java.util.HashMap">
+        SELECT
+        LOG_IP as clown ,
+        COUNT(ID) AS tolsum
+        FROM
+        BT_LOG
+        GROUP BY
+        LOG_IP
+        ORDER BY clown
+    </select>
+    <!-- 日志统计 -->
+    <select id="selectTypeTolCount" parameterType="string" resultType="java.util.HashMap">
+        SELECT
+        LOG_TYPE as clown ,
+        COUNT(ID) AS tolsum
+        FROM
+        BT_LOG
+        GROUP BY
+        LOG_TYPE
+        ORDER BY clown
+    </select>
+
+</mapper>

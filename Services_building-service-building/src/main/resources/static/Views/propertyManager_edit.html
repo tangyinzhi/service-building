@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>泸州市城市公共基础数据库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../lib/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="../css/home.css">
+    <script src="../js/config/config.js"></script>
+    <script src="../lib/layui/layui.js"></script>
+    <script src="../js/tool.js"></script>
+    <script src="../js/login/jquery-1.9.1.min.js"></script>
+    <script src="../js/login/jquery.cookie.js"></script>
+    <script src="../js/login/jquery.jsoncookie.js"></script>
+    <script src="../js/user.js"></script>
+    <script src="../js/property/propertyManagerEdit.js"></script>
+    <style>
+        .layui-form-mid {
+            float: left;
+            display: block;
+            padding: 0px 0 !important;
+            line-height: 20px;
+            margin-right: 10px;
+        }
+
+        .layui-form-radio {
+            margin-top: 6px;
+            margin-left: 6px !important;
+        }
+    </style>
+</head>
+<body class="childrenBody" style="font-size: 12px;margin: 10px 10px 0;">
+
+<form class="layui-form layui-form-pane">
+    <input id="ID" name="ID" type="hidden" value="">
+    <input id="pageFlag" type="hidden" value="">
+    <input id="resParentCount" type="hidden" value="">
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label"><font style="color:red">*</font>字段属性值</label>
+            <div class="layui-input-inline">
+                <input type="text" id="peName" name="peName" class="layui-input" maxlength="20" value="" lay-verify="required|Name|ColumnName" placeholder="请输入字段属性值">
+            </div>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">表格编号</label>
+        <div class="layui-input-block">
+            <input type="text" name="peTable" id="peTable" placeholder="表格编号" autocomplete="off" class="layui-input"
+            value ="OT_BUILDING">
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">表名</label>
+        <div class="layui-input-block">
+            <input type="text" name="peTableName" id="peTableName" placeholder="请输入表名" autocomplete="off" class="layui-input"
+            value="建筑物属性表">
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label"><font style="color:red">*</font>对应字段</label>
+            <div class="layui-input-inline layui-form par" >
+                <select id="peParameter" name="peParameter" lay-filter="peParameter" lay-search>
+                    <option value="">请选择</option>
+                    <!--<option value="DATANAME">DATANAME</option>-->
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label"><font style="color:red">*</font>对应字段名</label>
+        <div class="layui-input-inline layui-form" lay-filter="link01">
+            <select id="peParameterName" name="peParameterName" lay-filter="peParameterName" lay-verify="required" lay-search>
+                <option value="">请选择</option>
+            </select>
+            <!--<input type="text" name="peParameterName" id="peParameterName" placeholder="请输入对应字段名" autocomplete="off" class="layui-input">-->
+        </div>
+    </div>
+
+    <div class="layui-form-item layui-form-text">
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-block">
+            <textarea name="peBz" id="peBz" placeholder="请输入内容" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <input id="peId" name="peId" hidden>
+
+    <div class="layui-form-item" style="text-align: center;">
+        <button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="saveRes">保存</button>
+        <button id="cancle" class="layui-btn layui-btn-primary">取消</button>
+    </div>
+</form>
+
+</body>
+</html>

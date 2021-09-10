@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.pojo.building.mapper.AttachBuildingMapper">
+
+    <select id="selectInnerById" resultType="com.lzctzk.address.dao.building.entity.OtAttach" parameterType="string">
+        select
+        *
+        from
+        OT_ATTACH,RELA_ATTACH_BUILDING,OT_BUILDING
+        <where>
+            OT_ATTACH.OA_ID = RELA_ATTACH_BUILDING.RAB_OA_ID
+            AND RELA_ATTACH_BUILDING.RAB_OB_ID = OT_BUILDING.OB_ID
+            AND OT_BUILDING.OB_ID= #{obId,jdbcType=VARCHAR}
+        </where>
+    </select>
+
+    <select id="selectInnerByIdEdit" resultType="com.lzctzk.address.dao.building.entity.OtAttach"
+            parameterType="string">
+        select
+        *
+        from
+        OT_ATTACH,
+        RELA_ATTACH_BUILDING,
+        BUILD_ATT
+        <where>
+            OT_ATTACH.OA_ID = RELA_ATTACH_BUILDING.RAB_OA_ID
+            AND RELA_ATTACH_BUILDING.RAB_OB_ID = BUILD_ATT.OB_ID
+            AND BUILD_ATT.OB_ID= #{obId,jdbcType=VARCHAR}
+        </where>
+    </select>
+    <!-- 更新一条数据 -->
+    <update id="updateBuildyMap">
+        update BUILD_ATT
+        set
+        <foreach collection="content.entrySet()" item="value" index="key" close=""
+                 separator=",">
+            <if test=" @com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(value)">
+                <if test=" key=='OB_COMP_DATE'.toString() ">
+                    ${key} = to_date(substr(#{value},1,7),'yyyy-mm')
+                </if>
+                <if test=" key=='OB_ADD_TIME'.toString() ">
+                    ${key} = to_date(#{value},'yyyy-MM-dd hh24:mi:ss')
+                </if>
+                <if test=" key!='OB_COMP_DATE'.toString() and key!='OB_ADD_TIME'.toString() ">
+                    ${key} = #{value}
+                </if>
+            </if>
+        </foreach>
+        WHERE OB_ID = #{obId}
+    </update>
+    <update id="updateObBuildyMap">
+        update OT_BUILDING
+        set
+        <foreach collection="content.entrySet()" item="value" index="key" close=""
+                 separator=",">
+            <if test=" @com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(value)">
+                <if test=" key=='OB_COMP_DATE'.toString() ">
+                    ${key} = to_date(substr(#{value},1,7),'yyyy-mm')
+                </if>
+                <if test=" key=='OB_ADD_TIME'.toString() ">
+                    ${key} = to_date(#{value},'yyyy-MM-dd hh24:mi:ss')
+                </if>
+                <if test=" key!='OB_COMP_DATE'.toString()  and key!='OB_ADD_TIME'.toString() ">
+                    ${key} = #{value}
+                </if>
+            </if>
+        </foreach>
+        WHERE OB_ID = #{obId}
+    </update>
+    <!-- 插入一条数据 -->
+    <insert id="insertBuildyMap" parameterType="java.util.Map">
+
+        insert into OT_BUILDING
+        <foreach collection="content.entrySet()" item="value" index="key" open="(" close=")" separator=",">
+            <if test=" @com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(value)">
+                ${key}
+            </if>
+        </foreach>
+
+        values
+
+        <foreach collection="content.entrySet()" item="value" index="key" open="(" close=")" separator=",">
+            <if test=" @com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(value)">
+                <if test=" key=='OB_COMP_DATE'.toString() ">
+                    to_date(substr(#{value},1,7),'yyyy-mm')
+                </if>
+                <if test=" key!='OB_COMP_DATE'.toString() .toString() ">
+                    #{value}
+                </if>
+            </if>
+        </foreach>
+    </insert>
+
+    <!-- 查询数据 -->
+    <select id="selectByMap" resultType="java.util.Map">
+        select ${sql}
+        from ${tableName}
+        <if test=" @com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(cloumsValue) ">
+            where 1 !=1
+            <foreach collection="cloums" item="cloum" open="" close="" separator=" ">
+                <if test=" @com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(cloum) ">
+                    or ${cloum} like concat(concat('%',#{cloumsValue}),'%')
+                </if>
+            </foreach>
+        </if>
+        ORDER BY OB_ADD_TIME asc , OB_UPDATE_TIME asc
+    </select>
+    <!-- 分页查询数据 -->
+    <select id="selectPageByMap" resultType="java.util.Map">
+        SELECT
+        *
+        FROM
+        (
+        SELECT
+        TMP.*,
+        ROWNUM ROW_ID
+        FROM
+        (
+        with
+        s1 as(
+        SELECT * FROM (
+        select
+        <foreach collection="sql" item="cloum" open="" close="" separator=", ">
+            <if test=" @com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(cloum) ">
+                <if test=" cloum=='OB_UPDATE_TIME'.toString() or cloum=='OB_ADD_TIME'.toString() ">
+                    TO_CHAR(${cloum},'yyyy-mm-dd hh24:mi:ss') as ${cloum}
+                </if>
+                <if test=" cloum=='OB_COMP_DATE'.toString() ">
+                    TO_CHAR(${cloum},'yyyy-mm') as ${cloum}
+                </if>
+                <if test=" cloum!='OB_COMP_DATE'.toString() and cloum!='OB_UPDATE_TIME'.toString() and cloum!='OB_ADD_TIME'.toString() ">
+                    TO_CHAR(${cloum}) as ${cloum}
+                </if>
+            </if>
+
+        </foreach>
+        from BUILD_ATT
+        <if test=" @com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(cloumsValue) ">
+            where 1!=1
+
+            <foreach collection="cloums" item="cloum" open="" close="" separator=" ">
+                <if test=" @com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(cloum) ">
+                    or ${cloum} like concat(concat('%',#{cloumsValue}),'%')
+                </if>
+            </foreach>
+        </if>
+        ORDER BY OB_ADD_TIME asc , OB_UPDATE_TIME asc
+        )where OB_ISDELETE = 0
+        <if test="!isAppVal ">
+            and OB_MODEL_NAME='1'
+        </if>
+        <if test="isAppVal ">
+            and OB_MODEL_NAME!='1'
+        </if>
+
+        ),
+        s2 as (
+        SELECT * FROM (
+        select
+        <foreach collection="sql" item="cloum" open="" close="" separator=", ">
+            <if test=" @com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(cloum) ">
+                <if test=" cloum=='OB_UPDATE_TIME'.toString() or cloum=='OB_ADD_TIME'.toString() ">
+                    TO_CHAR(${cloum},'yyyy-mm-dd hh24:mi:ss') as ${cloum}
+                </if>
+                <if test=" cloum=='OB_COMP_DATE'.toString() ">
+                    TO_CHAR(${cloum},'yyyy-mm') as ${cloum}
+                </if>
+                <if test=" cloum!='OB_COMP_DATE'.toString() and cloum!='OB_UPDATE_TIME'.toString() and cloum!='OB_ADD_TIME'.toString() ">
+                    TO_CHAR(${cloum}) as ${cloum}
+                </if>
+            </if>
+        </foreach>
+        from OT_BUILDING
+        <if test=" @com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(cloumsValue) ">
+            where 1!=1
+            <foreach collection="cloums" item="cloum" open="" close="" separator=" ">
+                <if test=" @com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(cloum) and cloum !='OB_ISDELETE'.toString() ">
+                    or ${cloum} like concat(concat('%',#{cloumsValue}),'%')
+                </if>
+            </foreach>
+        </if>
+        ORDER BY OB_ADD_TIME asc , OB_UPDATE_TIME asc
+        )where OB_ISDELETE = 0
+        <if test="!isAppVal ">
+            and OB_MODEL_NAME='1'
+        </if>
+        <if test="isAppVal ">
+            and OB_MODEL_NAME!='1'
+        </if>
+        )
+        SELECT
+        *
+        FROM
+        s1 UNION ALL
+        SELECT
+        *
+        FROM
+        s2
+        ) TMP
+        WHERE
+        ROWNUM <![CDATA[ <= ]]> #{end}
+        )
+        WHERE
+        ROW_ID <![CDATA[ > ]]> #{start}
+
+    </select>
+    <!-- 分页查询数据 -->
+    <select id="selectPageByMapCount" resultType="java.lang.Integer">
+        select
+        count(OB_ID)
+        from (
+        select OB_ID,OB_ISDELETE,OB_IMAGE_INFO,OB_MODEL_NAME
+        from ${tableName}
+        <if test=" @com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(cloumsValue) ">
+            where 1 !=1
+            <foreach collection="cloums" item="cloum" open="" close="" separator=" ">
+                <if test=" @com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(cloum)  and cloum !='OB_ISDELETE'.toString() ">
+                    or ${cloum} like concat(concat('%',#{cloumsValue}),'%')
+                </if>
+            </foreach>
+        </if>
+        )
+        where OB_ISDELETE = 0
+        <if test="!isAppVal ">
+            and OB_MODEL_NAME='1'
+        </if>
+        <if test="isAppVal ">
+            and OB_MODEL_NAME!='1'
+        </if>
+    </select>
+    <select id="selectMaxObjectId" resultType="java.lang.Integer">
+        SELECT
+        max( abs(OBJECTID ))
+        FROM
+        OT_BUILDING
+
+    </select>
+</mapper>

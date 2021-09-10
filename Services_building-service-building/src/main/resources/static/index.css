@@ -1,0 +1,63 @@
+html,
+body,
+#app {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+#app {
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+    background: white;
+}
+
+.height100 {
+    height: 100%;
+}
+
+.modal-header {
+    background-color: rgb(51, 122, 183) !important;
+    border-radius: 4px 4px 0px 0px !important;
+}
+
+.modal-title {
+    color: white !important;
+}
+
+.content {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 52px;
+    bottom: 40px;
+    overflow: auto;
+}
+
+
+.content::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 10px;
+    /*高宽分别对应横竖滚动条的尺寸*/
+    height: 10px;
+}
+
+.content::-webkit-scrollbar-thumb {
+    /*滚动条里面小方块
+    border-radius: 10px;*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+    background: #ededed;
+}
+
+.content::-webkit-scrollbar-track {
+    /* 滚动条里面轨道 */
+    -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5);
+   /* border-radius: 10px; */
+    background: #ededed00;
+}
+
+/*https://www.cnblogs.com/yujihang/p/6959224.html*/
+.content::-webkit-scrollbar-corner {
+    display: none;
+}

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.dao.com.lzctzk.address.dao.building.mapper.BtSystemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lzctzk.address.dao.building.entity.BtSystem">
+        <id column="SYSTEMID" property="systemid"/>
+        <result column="SYSTEMNAME" property="systemname"/>
+        <result column="DESCRIPTION" property="description"/>
+        <result column="CREATEUSERID" property="createuserid"/>
+        <result column="CREATEIP" property="createip"/>
+        <result column="CREATETIME" property="createtime"/>
+        <result column="UPDATEUSERID" property="updateuserid"/>
+        <result column="UPDATEIP" property="updateip"/>
+        <result column="UPDATETIME" property="updatetime"/>
+        <result column="ISDELETE" property="isdelete"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        SYSTEMID, SYSTEMNAME, DESCRIPTION, CREATEUSERID, CREATEIP, CREATETIME, UPDATEUSERID, UPDATEIP, UPDATETIME,
+        ISDELETE
+    </sql>
+
+</mapper>

@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>泸州市城市公共基础数据库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="../../images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../lib/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/home.css">
+    <link rel="stylesheet" href="../../lib/openlayer/ol.css" type="text/css">
+    <script src="../../lib/openlayer/ol.js"></script>
+    <script src="../../js/config/config.js"></script>
+    <script src="../../js/Utils/BaseURL.js"></script>
+    <script src="../../lib/layui/layui.js"></script>
+    <script src="../../js/tool.js"></script>
+    <script src="../../js/login/jquery-1.9.1.min.js"></script>
+    <script src="../../js/jquery.validate.js"></script>
+    <script src="../../js/Utils/messages_cn.js"></script>
+    <script src="../../js/login/jquery.cookie.js"></script>
+    <script src="../../js/login/jquery.jsoncookie.js"></script>
+    <script src="../../js/login/cookie.js"></script>
+    <script src="../../js/user.js"></script>
+    <!--<script src="../../js/Utils/getSelectValue.js"></script>-->
+
+    <link type="text/css" rel="stylesheet" href="../../css/formManager/formview.css?v=20160929"/>
+    <link type="text/css" rel="stylesheet" href="../../css/formManager/default.css"/>
+    <link rel="stylesheet" href="../../css/preview.css">
+
+    <link rel="stylesheet" type="text/css" href="../../css/font-awesome.min.css">
+    <style>
+        .del_attach_btn{
+            color: #FF5722;
+            font-size: 16px;
+            /*font-weight: bolder;*/
+            position: relative;
+            /*cursor: pointer;*/
+            right: 10px;
+            border: 1px solid #FF5722;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body class="wallpaper">
+<div id="container" class="container hide">
+
+    <form id="BuildingInfo" class="form " style="overflow-y: auto; height: 390px ;width: 620px;">
+
+        <div id="formHeader" class="info">
+        </div>
+        <ul id="fields" class="fields">
+        </ul>
+    </form>
+</div>
+
+<div id="stage" class="clearfix hide">
+    <img class="img-option" src=""/>
+</div>
+<div class="hide" id="divtmp"></div>
+<div id="overlay" class="overlay hide"></div>
+<div id="lightBox" class="lightbox hide">
+    <div id="lbContent" class="lbcontent clearfix"></div>
+</div>
+<script type="text/javascript" src="../../js/formManager/head.load.min.js"></script>
+<script type="text/javascript">
+    var isEmbed=false,F={"DISSHARE":""};
+    var RULE={FIELDSRULE:[]};
+    var ADVPERM={};
+    var M={FRMNM:"建筑物属性表单视图",DESC:"",LANG:"cn",LBLAL:"L",CFMTYP:"T",CFMMSG:"提交成功。",SDMAIL:"0",CAPTCHA:"1",IPLMT:"0",SCHACT:"0",INSTR:"0",ISPUB:"1"};
+    var F ={};
+    var fieldsLimit = 150;
+    var goodsNumber = 60;
+    var imageNumber = 10;
+    var LVL = 4;
+    var fieldsLimit = 150;
+    var goodsNumber = 60;
+    var imageNumber = 10;
+    var LVL = 4;
+
+    var isForTemplate = false;
+    M.GID = "23423werfwetwe" ;
+
+    var isForMobile=false;
+    var IMAGEURL="#",FILEIMAGEEDITSTYLE="@100w_90Q";
+    head.js(
+        //"../../js/jquery-1.11.1.min.js",
+        '../../js/formManager/lang-cn.js?v=20160929',
+        '../../js/formManager/address-cn.js?v=20160929',
+        "../../js/formManager/utils.js?v=20160929",
+        "../../js/formManager/formview.js?v=20160929",
+        "../../js/Utils/preview.js",
+        "../../js/Utils/utils.js",
+        "../../js/Utils/BaseURL.js");
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "//hm.baidu.com/hm.js?4e93cf0b43bbb28b7446cd782a148db3";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+        $(function (){
+            $.ajax({
+                type: 'get',
+                url: GETFORM,
+                contentType: "application/json;charset=UTF-8",
+                dataType: "json",
+                async:false,
+                success: function(res) {
+                    if (res != null) {
+                        if (res.code == 0) {
+                            var data = res.data;
+                            //var firstF =JSON.stringify(res.data.parameterData);
+                            F=JSON.parse(res.data.parameterData);
+                            //sessionStorage.setItem('firstF',F);
+                        }
+                    }
+                },
+                error: function() {
+                    var firstF = [{"SECDESC":"<p><br></p>","CSS":"","SCU":"pub","LBL":"基础信息（必填）","TYP":"section"},{"REQD":"1","MIN":"1","SCU":"pub","DEF":"请填入建筑名称","MAX":"5","UNIQ":"0","LBL":"建筑名称","TYP":"text","FLDSZ":"xxl","CLMV":"OB_NAME"},{"REQD":"1","SUBFLDS":{"ZIP":{},"CITY":{},"PRV":{},"DTL":{}},"CSS":"","SCU":"pub","DEF":"四川省-泸州市-","LBL":"地址","TYP":"address","CLMV":"OB_ADDR"},{"LBL":"地理位置","TYP":"map","CLMV":"LOCATION","REQD":"0","SCU":"pub","INSTR":"","CSS":"","SUBFLDS":{"TXT":{},"J":{},"W":{}}},{"REQD":"1","SCU":"pub","UNIQ":"0","LBL":"基底面积","LAYOUT":"leftHalf","TYP":"number","FLDSZ":"s","CLMV":"OB_LD_AREA"},{"REQD":"1","SCU":"pub","UNIQ":"0","LBL":"建筑面积","LAYOUT":"leftHalf","TYP":"number","FLDSZ":"s","CLMV":"OB_FLOOR_AREA"},{"REQD":"1","SUBFLDS":{"DD1":{},"DD3":{},"DD2":{}},"CSS":"","ITMS":[{"VAL":"111","ITMS":[{"VAL":"选项 11","ITMS":[{"VAL":"选项 111"},{"VAL":"选项 112"}]},{"VAL":"选项 12","ITMS":[{"VAL":"选项 121"},{"VAL":"选项 122"}]}]},{"VAL":"222","ITMS":[{"VAL":"选项 21","ITMS":[{"VAL":"选项 211"},{"VAL":"选项 212"}]},{"VAL":"选项 22","ITMS":[{"VAL":"选项 221"},{"VAL":"选项 222"}]}]}],"SCU":"pub","INSTR":"","LBL":"建筑用途","TYP":"dropdown2","FLDSZ":"m","CLMV":"OB_USAGE","pN":"3"},{"REQD":"1","OTHER":"0","CSS":"","ITMS":[{"VAL":"条件基础","CHKED":"1"},{"VAL":"独立基础","CHKED":"0"},{"VAL":"筏板基础","CHKED":"0"},{"VAL":"箱行基础","CHKED":"0"},{"VAL":"桩基础","CHKED":"0"}],"SCU":"pub","DEF":"0","LAY":"three","INSTR":"","LBL":"基础形式","TYP":"radio","RDM":"0","CLMV":"OB_BASE_FORM"},{"REQD":"1","OTHER":"0","CSS":"","ITMS":[{"VAL":"钢结构","CHKED":"1"},{"VAL":"混合结构","CHKED":"0"},{"VAL":"砖结构","CHKED":"0"}],"SCU":"pub","DEF":"0","LAY":"three","INSTR":"","LBL":"结构类型","TYP":"radio","RDM":"0","CLMV":"OB_STRU"},{"REQD":"1","SCU":"pub","UNIQ":"0","LBL":"地上层数","LAYOUT":"leftHalf","TYP":"number","FLDSZ":"s","CLMV":"OB_UP_FLOOR"},{"REQD":"1","SCU":"pub","UNIQ":"0","LBL":"地下层数","LAYOUT":"leftHalf","TYP":"number","FLDSZ":"s","CLMV":"OB_DOWN_FLOOR"},{"REQD":"1","SCU":"pub","UNIQ":"0","LBL":"建筑层高","LAYOUT":"leftHalf","TYP":"number","FLDSZ":"s","CLMV":"OB_FLOOR_HEIGHT"},{"REQD":"1","SCU":"pub","UNIQ":"0","LBL":"建筑高度","LAYOUT":"leftHalf","TYP":"number","FLDSZ":"s","CLMV":"OB_HEIGHT"},{"REQD":"1","SCU":"pub","UNIQ":"0","LBL":"住宅户数","TYP":"number","FLDSZ":"s","CLMV":"OB_DOOR_NUM"},{"SECDESC":"<p><br></p>","CSS":"","SCU":"pub","LBL":"扩展信息（选填）","TYP":"section"},{"REQD":"0","SCU":"pub","UNIQ":"0","LBL":"模型名称","TYP":"text","FLDSZ":"xxl","CLMV":"OB_MODEL_NAME"},{"REQD":"0","SCU":"pub","UNIQ":"0","LBL":"电梯数量","TYP":"number","FLDSZ":"s","CLMV":"obElevatorNum"},{"REQD":"0","CSS":"","ITMS":[{"VAL":"可容纳担架电梯","CHKED":"0"},{"VAL":"无障碍电梯","CHKED":"0"},{"VAL":"客梯","CHKED":"0"},{"VAL":"普通楼栋电梯","CHKED":"0"}],"SCU":"pub","LAY":"two","INSTR":"","LBL":"电梯类别","TYP":"checkbox","CLMV":"OB_ELEVATOR_INFO"},{"REQD":"0","CSS":"","ITMS":[{"VAL":"商铺","CHKED":"0"},{"VAL":"绿化","CHKED":"0"},{"VAL":"车位","CHKED":"0"}],"SCU":"pub","LAY":"three","INSTR":"","LBL":"地上空间","TYP":"checkbox","CLMV":"OB_UP_INFO"},{"REQD":"0","CSS":"","ITMS":[{"VAL":"车位","CHKED":"0"},{"VAL":"商业","CHKED":"0"},{"VAL":"库房","CHKED":"0"}],"SCU":"pub","LAY":"three","INSTR":"","LBL":"地下空间","TYP":"checkbox","CLMV":"OB_DOWN_INFO"},{"REQD":"1","SCU":"pub","UNIQ":"0","LBL":"产权单位","TYP":"text","FLDSZ":"xxl","CLMV":"OB_PROPERTY_UNIT"},{"REQD":"0","SCU":"pub","UNIQ":"0","LBL":"房屋产权号","TYP":"text","FLDSZ":"xxl","CLMV":"OB_PROPERTY_NO"},{"REQD":"1","CSS":"","SCU":"pub","DEF":"","INSTR":"","UNIQ":"0","LBL":"建造年代","TYP":"date","FMT":"ymd","CLMV":"OB_COMP_DATE"},{"REQD":"0","SCU":"pub","UNIQ":"0","LBL":"物业名称","TYP":"text","FLDSZ":"m","CLMV":"OB_PROPERTY_NAME"},{"REQD":"0","CSS":"","ITMS":[{"VAL":"1,一星绿色","CHKED":"0"},{"VAL":"1,二星绿色","CHKED":"0"},{"VAL":"1,三星绿色","CHKED":"0"},{"VAL":"2,50%节能","CHKED":"0"},{"VAL":"2,65%节能","CHKED":"0"},{"VAL":"2,非节能","CHKED":"0"},{"VAL":"3,成品建筑","CHKED":"0"},{"VAL":"3,装配式建筑","CHKED":"0"},{"VAL":"4,BIM设计","CHKED":"0"}],"SCU":"pub","LAY":"three","INSTR":"","LBL":"设计标准","TYP":"checkbox","CLMV":"OB_DESIGN_CRITERIA"},{"LBL":"采集人员","TYP":"text","CLMV":"OB_AIR_DEFENCE_INFO","FLDSZ":"m","REQD":"0","UNIQ":"0","SCU":"pub"},{"REQD":"0","IMG":"","CSS":"","SCU":"pub","INSTR":"","LBL":"图片","TYP":"image","CLMV":"OB_DRAWING_PATH"},{"REQD":"0","OTHER":"0","CSS":"","ITMS":[{"VAL":"已建","CHKED":"0"},{"VAL":"在建","CHKED":"0"},{"VAL":"已拆","CHKED":"0"}],"SCU":"pub","LAY":"three","INSTR":"","LBL":"建筑状态","TYP":"radio","RDM":"0","CLMV":"OB_STATUS"},{"REQD":"0","SCU":"pub","UNIQ":"0","LBL":"地质状况","TYP":"text","FLDSZ":"xxl","CLMV":"OB_GEOLOGY_INFO"},{"REQD":"0","CSS":"","MIN":"","SCU":"pub","DEF":"","MAX":"","INSTR":"","UNIQ":"0","LBL":"备注","TYP":"textarea","FLDSZ":"s","CLMV":"OB_BZ"}];
+                    sessionStorage.setItem('firstF',firstF);
+                }
+            });
+        });
+    })();
+</script>
+<script src="../../js/stampMap/buildAttManagerEdit.js"></script>
+</body>
+</html>

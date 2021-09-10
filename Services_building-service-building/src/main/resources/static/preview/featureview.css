@@ -1,0 +1,17 @@
+.backdrop {
+    color: white;
+}
+.cesium-infoBox-defaultTable th {
+    white-space: nowrap !important;
+}
+
+table {
+    white-space: nowrap !important;
+}
+
+.layui-layer-iframe {
+    position: absolute;
+}
+iframe {
+    width: 100%;
+}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.dao.com.lzctzk.address.dao.building.mapper.PtEnumMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lzctzk.address.dao.building.entity.PtEnum">
+        <id column="PE_ID" property="peId"/>
+        <result column="PE_NAME" property="peName"/>
+        <result column="PE_TABLE" property="peTable"/>
+        <result column="PE_TABLE_NAME" property="peTableName"/>
+        <result column="PE_PARAMETER" property="peParameter"/>
+        <result column="PE_PARAMETER_NAME" property="peParameterName"/>
+        <result column="PE_ADD_TIME" property="peAddTime"/>
+        <result column="PE_UPDATE_TIME" property="peUpdateTime"/>
+        <result column="PE_BZ" property="peBz"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        PE_ID, PE_NAME, PE_TABLE, PE_TABLE_NAME, PE_PARAMETER, PE_PARAMETER_NAME, PE_ADD_TIME, PE_UPDATE_TIME, PE_BZ
+    </sql>
+
+</mapper>

@@ -1,0 +1,230 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>建筑物三维</title>
+
+    <script type="text/javascript">
+        try {
+            // 重命名 Electron 提供的 require
+            window.nodeRequire = require;
+            delete window.require;
+            delete window.exports;
+            delete window.module;
+        } catch(e) {
+
+        }
+    </script>
+    <script type="text/javascript" data-main="../main" src="../js/require.min.js"></script>
+    <script type="text/javascript" src="../tool/haoutil.js"></script>
+    <style type="text/css">
+        .mapcontainer {
+            position: absolute;
+            width: 100%;
+            height: calc(100vh - 30px);
+            /*bottom: 40px;
+    top: 160px;*/
+        }
+
+        .row {
+            margin-top: 2px;
+        }
+
+        .glyphicon {
+            margin-right: 4px !important;
+        }
+
+        #sceneTreeContainer {
+            position: absolute;
+            min-width: 330px;
+            top: 20px;
+            bottom: 120px;
+            left: 30px;
+            background: rgba(43, 44, 47, 0.48);
+            border-radius: 4px;
+            padding-top: 10px;
+        }
+
+        #sceneTreeContainer2 {
+            position: absolute;
+            top: 40px;
+            bottom: 10px;
+            left: 4px;
+            right: 4px;
+            overflow: auto;
+        }
+
+        #sceneTree {
+            background: unset !important;
+        }
+
+        #sceneTreeContainer2::-webkit-scrollbar {
+            /*滚动条整体样式*/
+            width: 10px;
+            /*高宽分别对应横竖滚动条的尺寸*/
+            height: 10px;
+        }
+
+        #sceneTreeContainer2::-webkit-scrollbar-thumb {
+            /*滚动条里面小方块*/
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+            background: #888888;
+        }
+
+        #sceneTreeContainer2::-webkit-scrollbar-track {
+            /*滚动条里面轨道*/
+            -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            background: #ededed00;
+        }
+
+        .btnreset {
+            margin-left: 10px;
+            cursor: pointer;
+            color: white !important;
+        }
+
+        .btnreset:hover {
+            color: white !important;
+        }
+
+        .ztree {
+            color: white !important;
+        }
+
+        .ztree li a {
+            color: gray!important;
+            text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
+        }
+
+        .ztree li a:hover {
+            color: white !important;
+            background: #555;
+            border-radius: 2px;
+            box-shadow: inset 0 0 1px #555;
+        }
+
+        .sceneTreeRange {
+            display: inline-block;
+            margin-left: 10px !important;
+            line-height: 16px;
+            height: 16px !important;
+            /*margin-top: 3px !important;*/
+        }
+        .slider-container {
+            margin-top: 6px !important;
+            margin-left: 37px;
+        }
+    </style>
+
+<body>
+<div id="app">
+    <titlebar ref="titlebar" title="公共基础数据库" subtitle="3dtiles预览" style="display:none"></titlebar>
+    <div class="container-fluid">
+        <div class="row" style="display:none">
+            <div class="col col-sm-2" v-if="iselectron">
+                <button class="btn btn-xs btn-warning" @click="exit()"><span class="glyphicon glyphicon-arrow-left"></span>返回</button>
+            </div>
+            <div class="col col-sm-2" data-toggle="tooltip" data-placement="bottom" title="拷贝服务路径">
+                <button class="btn btn-xs btn-primary" @click="copyurl()"><span class="glyphicon glyphicon-copy"></span>拷贝服务路径</button>
+            </div>
+            <div class="col col-sm-2" data-toggle="tooltip" data-placement="bottom" title="cesium加载代码">
+                <button class="btn btn-xs btn-info" @click="showcode()"><span class="glyphicon glyphicon-text-size"></span>cesium加载代码</button>
+            </div>
+            <div class="col col-sm-2" data-toggle="tooltip" data-placement="bottom" title="修改样式代码">
+                <button class="btn btn-xs btn-info" @click="style()"><span class="glyphicon glyphicon-text-size"></span>样式编辑器</button>
+            </div>
+            <div class="col col-sm-2" v-if="iselectron" data-toggle="tooltip" data-placement="bottom" title="外部浏览器打开">
+                <button class="btn btn-xs btn-danger" @click="sysbrowser()"><span class="glyphicon glyphicon-send"></span>系统浏览器打开</button>
+            </div>
+            <div class="col col-sm-2" data-toggle="tooltip" data-placement="bottom" title="定位">
+                <button class="btn btn-xs btn-success" @click="locate()"><span class="glyphicon glyphicon-record"></span>定位</button>
+            </div>
+        </div>
+        <div class="row" style="display:none">
+            <div class="col col-sm-2">
+                <dt>服务地址：</dt>
+            </div>
+            <div class="col col-sm-9 ">
+                <dd> <code>{{url}}</code></dd>
+            </div>
+        </div>
+        <div class="row" style="display:none">
+            <form @submit.prevent="inputPos" style="line-height: 30px;">
+                <label class="col-sm-2 control-label">经纬度位置：</label>
+                <div class="col col-sm-2 ">
+                    <input class="form-control" :readonly="iseidting" v-model="location.longitude" type="number" @blur="inputPos">
+                </div>
+                <div class="col col-sm-2 ">
+                    <input class="form-control" :readonly="iseidting" v-model="location.latitude" type="number" @blur="inputPos">
+                </div>
+                <div class="col col-sm-2 ">
+                    <input class="form-control" :readonly="iseidting" v-model="location.height" type="number" @blur="inputPos">
+                </div>
+                <div class="col col-sm-2 ">
+                    <label class="control-label">方向：</label>
+                </div>
+                <div class="col col-sm-2 ">
+                    <input class="form-control" :readonly="iseidting" v-model="heading" type="number" @blur="inputPos">
+                </div>
+                <!--
+            <div class="col col-sm-1" v-show="!iseidting" >
+                <button class="btn btn-xs btn-success"   @click="inputapply()"><span class="glyphicon glyphicon-ok"></span>应用</button>
+            </div>
+            -->
+            </form>
+        </div>
+        <div class="row" style="display:none">
+            <div class="col col-sm-12">
+                <label class="checkbox-inline">
+                    <input type="checkbox" :checked="terrainwireframe" @click="c_show()"> 不可见
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" :checked="terrainwireframe" @click="c_terrainwireframe()"> 地形三角网
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" :checked="depthtest" @click="c_depthtest()"> 地形深度检测
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" :checked="wireframe" @click="c_wireframe()"> 三角网
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" :checked="boundbox" @click="c_boundbox()"> 包围盒
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" :checked="iseidting" @click="c_edit()"> 鼠标拖拽
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" :checked="gterrain" @click="c_terrain()"> 全球地形
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" :checked="gmouseover" @click="c_mouseover()"> 鼠标高亮
+                </label>
+                <label class="checkbox-inline">
+                    <input type="checkbox" :checked="gfirstperson" @click="c_firstperson()"> 键盘漫游
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="mapcontainer">
+        <map3d ref=map3d></map3d>
+        <tool ref="tool"></tool>
+        <mousepos ref="mousepos"></mousepos>
+        <div id="sceneTreeContainer" v-show="hasSceneTree">
+            <span class="glyphicon glyphicon-refresh btnreset" @click="resetStyle()"></span>
+
+            <div id="sceneTreeContainer2">
+                <div id="sceneTree" class="ztree">
+                </div>
+            </div>
+        </div>
+    </div>
+    <statusbar ref="statusbar" style="display:none"></statusbar>
+    <stylewindow ref="stylewindow"></stylewindow>
+    <infowindow ref="infowindow"> </infowindow>
+</div>
+</body>
+
+</html>

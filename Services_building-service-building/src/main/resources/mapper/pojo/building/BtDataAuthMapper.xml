@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.pojo.building.mapper.DataAuthMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lzctzk.address.dao.building.entity.BtDataAuth">
+        <result column="ID" property="id"/>
+        <result column="DATA_NAME" property="dataName"/>
+        <result column="CREATE_USER_ID" property="createUserId"/>
+        <result column="CREATE_IP" property="createIp"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <result column="UPDATE_USER_ID" property="updateUserId"/>
+        <result column="UPDATE_IP" property="updateIp"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+        <result column="PID" property="pid"/>
+        <result column="SYSTEM_ID" property="systemId"/>
+        <result column="SYSTEM_NAME" property="systemName"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, DATA_NAME, CREATE_USER_ID, CREATE_IP, CREATE_TIME, UPDATE_USER_ID, UPDATE_IP, UPDATE_TIME, PID, SYSTEM_ID,
+        SYSTEM_NAME
+    </sql>
+    <!-- 查询总记录数 -->
+    <select id="selectCount" resultType="long">
+        select count(*)
+        from BT_DATA_AUTH
+    </select>
+    <!-- 查询总记录数 -->
+    <select id="selectMaxID" resultType="long">
+        select MAX (ID)
+        from BT_DATA_AUTH
+    </select>
+</mapper>

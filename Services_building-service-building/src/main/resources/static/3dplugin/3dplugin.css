@@ -1,0 +1,92 @@
+.mouseposition {
+
+    position: absolute;
+    bottom: 30px;
+    background: rgba(43, 44, 47, 0.47843137254901963);;
+    
+    color: white;
+    left: 0px;
+    right: 29px;
+    height: 28px;
+    line-height: 28px;
+    width: 100%;
+}
+
+
+.yujing {
+    position: absolute;
+    right: 0px;
+    top: 10px;
+    background: rgba(38, 38, 38, 0.95) !important;
+    color: white;
+}
+
+.yujing_show {
+    width: 25%;
+    box-shadow: 0 0 10px 1px #000;
+    overflow: auto;
+    bottom: 30px;
+}
+
+.yujing_hide {}
+
+.yujing_selected {
+    border: 1px solid #a8a1dc;
+}
+
+.yujingimage {
+    width: 32px;
+    height: 32px;
+}
+
+.xingzheng {
+    position: absolute;
+    left: 0px;
+    top: 10px;
+    background: rgba(38, 38, 38, 0.95) !important;
+    color: white;
+}
+
+.xingzheng_show {
+    width: 150px;
+    box-shadow: 0 0 10px 1px #000;
+    overflow: auto;
+    bottom: 30px;
+}
+
+.xingzheng_hide {}
+
+.canclick {
+    cursor: pointer;
+}
+
+.xingzheng_a {
+    color: white;
+}
+
+
+
+
+
+.tabselect {
+    position: absolute;
+    left: 0px;
+    top: 100px;
+    background: rgba(38, 38, 38, 0.95) !important;
+    color: white;
+}
+
+.tabselect_show {
+    width: 300px;
+    box-shadow: 0 0 10px 1px #000;
+    overflow: auto;
+    bottom: 30px;
+    height: 350px;
+}
+
+.tabselect_hide {}
+
+.shouyeicon {
+    margin-top: 9px;
+    font-size: 40px;
+}

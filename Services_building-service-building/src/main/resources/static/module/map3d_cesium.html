@@ -1,0 +1,10 @@
+﻿<div id="map3d" style="width: 100%;height: 100%;position: relative;">
+    <select v-show='selectbase' class="form-control hide" style="position: absolute;
+    z-index: 100;
+    right: 10px;
+    width: 150px;
+    top: 10px;display: none;" v-model="baselayer">
+        <option value=''>无在线底图</option>
+        <option v-for="l in baselayers" :value="l">{{l.name}}</option>
+    </select>
+</div>

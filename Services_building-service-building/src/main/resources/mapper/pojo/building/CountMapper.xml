@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.pojo.building.mapper.CountMapper">
+    <select id="getCount" resultType="map" parameterType="string">
+        SELECT
+        ${columnName} AS columnName,
+        COUNT (OB_ID) AS countNum
+        FROM
+        ${tableName}
+        GROUP BY
+        ${columnName}
+        ORDER BY
+        countNum DESC
+    </select>
+
+    <select id="getCountByDate" resultType="int" parameterType="string">
+        SELECT COUNT(OB_ID) FROM ${tableName}
+        WHERE
+        OB_COMP_DATE &lt;= add_months (SYSDATE,-#{value}*12 )
+
+    </select>
+
+</mapper>

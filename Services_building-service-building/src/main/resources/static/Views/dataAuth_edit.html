@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>泸州市城市公共基础数据库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../lib/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="../css/home.css">
+    <script src="../js/config/config.js"></script>
+    <script src="../lib/layui/layui.js"></script>
+    <script src="../js/tool.js"></script>
+    <script src="../js/login/jquery-1.9.1.min.js"></script>
+    <script src="../js/login/jquery.cookie.js"></script>
+    <script src="../js/login/jquery.jsoncookie.js"></script>
+    <script src="../js/user.js"></script>
+    <script src="../js/dataAuth/dataAuthEdit.js"></script>
+    <style>
+        .layui-form-mid {
+            float: left;
+            display: block;
+            padding: 0px 0 !important;
+            line-height: 20px;
+            margin-right: 10px;
+        }
+
+        .layui-form-radio {
+            margin-top: 6px;
+            margin-left: 6px !important;
+        }
+    </style>
+</head>
+<body class="childrenBody" style="font-size: 12px;margin: 10px 10px 0;">
+    <!--<blockquote class="layui-elem-quote layui-quote-nm" --%>
+        <%--style="border-radius:0.25em;color: #31708f;background-color: #d9edf7;border-width:1px; padding:6px; border-color:#bce8f1;">--%>
+        <%--温馨提示:1.菜单类型为菜单时父级菜单可以为空;2.菜单类型为按钮时父级菜单不能为空;3.父级菜单选中时，资源路径不能为空--%>
+        <%--
+    </blockquote>-->
+    <form class="layui-form layui-form-pane">
+        <input id="id" name="id" type="hidden" value="">
+        <input id="pageFlag" type="hidden" value="">
+        <input id="resParentCount" type="hidden" value="">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">系统ID</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="systemId" name="systemId" class="layui-input" maxlength="10" value="" lay-verify="required">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">系统名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="systemName" name="systemName" class="layui-input" maxlength="50" value="" lay-verify="required">
+                </div>
+            </div>
+
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">图层名称</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="dataName" name="dataName" class="layui-input" maxlength="20" value="" lay-verify="required" placeholder="请输入菜单名称">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label">父级图层</label>
+                <div class="layui-input-inline">
+                    <select id="pid" name="pid" lay-verify="required" lay-search>
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item" style="text-align: center;">
+            <button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="saveRes">保存</button>
+            <button id="cancle" class="layui-btn layui-btn-primary">取消</button>
+        </div>
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>泸州市城市公共基础数据库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="ok-admin v1.0,ok-admin网站后台模版,后台模版下载,泸州市城市公共基础数据库模版,HTML后台模版下载">
+    <meta name="description" content="ok-admin v1.0，顾名思义，很赞的后台模版，它是一款基于Layui框架的轻量级扁平化且完全免费开源的网站泸州市城市公共基础数据库模板，适合中小型CMS后台系统。">
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="lib/layui/css/layui.css">
+    <link rel="stylesheet" href="css/okadmin.css">
+    <link rel="stylesheet" href="css/font.css">
+    <link rel="stylesheet" href="lib/nprogress/nprogress.css">
+    <link rel="stylesheet" href="css/changeLayui.css">
+    <!--js逻辑-->
+	<script src="js/login/jquery-1.9.1.min.js"></script>
+	<script src="lib/layui/layui.js"></script>
+	<script src="js/login/jquery.cookie.js"></script>
+	<script src="js/login/jquery.jsoncookie.js"></script>
+	<script src="lib/nprogress/nprogress.js"></script>
+	<script src="js/login/cookie.js"></script>
+    <script src="js/tool.js"></script>
+	<script src="js/indexframe.js"></script>
+</head>
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+
+        <!--左侧导航区域-->
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll" id="leftMenu">
+                <ul class="layui-nav layui-nav-tree" lay-shrink="all" lay-filter="">
+                    <li class="layui-nav-item layui-nav-itemed">
+                        <a class="" href="javascript:;">
+                            <i class="layui-icon">&#xe716;</i> 系统管理
+                        </a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="javascript:;" path="Views/user.html" tab-id="1-1"><i class="iconfont icon-dianliyonghuzongshu"></i> 用户管理</a></dd>
+                            <dd><a href="javascript:;" path="Views/role.html" tab-id="1-3"><i class="iconfont icon-jiaose"></i> 角色管理</a></dd>
+                            <dd><a href="javascript:;" path="Views/System.html" tab-id="1-4"><i class="iconfont icon-settings"></i> 系统管理</a></dd>
+                            <dd><a href="javascript:;" path="Views/permission.html" tab-id="1-5"><i class="iconfont icon-jiaoseshouquan"></i> 功能权限管理</a></dd>
+                            <dd><a href="javascript:;" path="Views/dataAuth.html" tab-id="1-6"><i class="iconfont icon-wenzhang2"></i> 三维数据权限管理</a></dd>
+                            <dd><a href="javascript:;" path="Views/dataManager.html" tab-id="1-7"><i class="layui-icon layui-icon-form"></i>二维数据服务管理</a></dd>
+                            <dd><a href="javascript:;" path="Views/Log_List.html" tab-id="1-8"><i class="iconfont icon-rizhi"></i> 系统日志</a></dd>
+                            <dd><a href="javascript:;" path="Views/ColumnsManager.html" tab-id="1-9"><i class="iconfont icon-rizhi"></i> 字段管理</a></dd>
+                        </dl>
+                    </li>
+                </ul>
+            </div>       
+        </div>
+        <!-- 侧边伸缩-->
+        <div id="side-fold" class="kit-side-fold changeDiv">
+            <a class ="ssss"layadmin-event="flexible" title="侧边伸缩" style="cursor: pointer;color: #fff">
+              <i class="layui-icon index_show_icon layui-icon-left" style="font-size: 5px"></i>
+            </a>
+        </div>
+        <!-- 内容主体区域 -->
+        <div class="content-body">
+            <div class="layui-tab layui-tab-brief" lay-filter="ok-tab" lay-allowClose="true">
+                <ul class="layui-tab-title">
+                    <!--<li class="layui-this"><i class="layui-icon">&#xe68e;</i> 控制台</li>-->
+                </ul>
+                <div class="layui-tab-content">
+                    <!--<div class="layui-tab-item layui-show">-->
+                        <!--<iframe src='welcome' frameborder="0" scrolling="yes" width="100%" height="100%" style=" height: calc(100vh - 100px);"></iframe>-->
+                    <!--</div>-->
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <div class="yy"></div>
+    
+</body>
+</html>

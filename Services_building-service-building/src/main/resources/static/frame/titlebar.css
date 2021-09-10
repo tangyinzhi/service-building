@@ -1,0 +1,31 @@
+.titlebar {}
+
+
+.sysbtn{
+  padding-top:10px;
+  padding-right: 2px;
+}
+
+.navbar-default {
+    -webkit-app-region: drag;
+    -webkit-user-select: none;
+    background-color: rgb(51, 122, 183) !important;
+    border-color: rgb(40, 96, 144) !important;
+    border-radius: 0px !important;
+}
+
+.navbar-default a {
+    -webkit-app-region: no-drag;
+}
+
+.navbar-brand {
+    color: white !important;
+}
+
+.navbar {
+    margin-bottom: 0px !important;
+}
+
+#app{
+    border: 1px solid #52576b;
+}

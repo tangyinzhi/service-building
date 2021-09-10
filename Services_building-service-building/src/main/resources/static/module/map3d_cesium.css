@@ -1,0 +1,37 @@
+.cesium-widget-credits {
+	display: none !important;
+}
+
+.cesium-infoBox-defaultTable th {
+	white-space: nowrap !important;
+}
+table  {
+	white-space: nowrap !important;
+}
+
+.cesium-performanceDisplay-defaultContainer {
+	position: absolute;
+	bottom: 60px !important;
+	right: 10px;
+	top: auto !important;
+	text-align: right;
+}
+.hide{
+	display: none;
+}
+.cesium-viewer-toolbar {
+    display: block;
+    position: absolute;
+    top: 20px !important;
+    right: 5px;
+}
+/*.cesium-performanceDisplay {
+    background-color: rgba(58, 144, 223, 0.48) !important;
+    padding: 7px;
+    border-radius: 5px;
+    border: 1px solid rgba(58, 144, 223, 0.48) !important;
+    font: bold 12px sans-serif;
+}*/
+.cesium-widget, .cesium-widget canvas {
+    height: calc(100vh - 30px) !important;
+}

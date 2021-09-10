@@ -1,0 +1,55 @@
+#端口号
+server:
+  port: 8892
+
+#swagger
+swagger:
+  enable: true
+
+#日志配置
+logging:
+  config: classpath:log/logback/logback-spring-pro.xml
+
+spring:
+  application:
+    name: service-place-address-new-test
+  datasource: #数据库连接配置
+    url: jdbc:oracle:thin:@192.168.30.15:1521:orcl
+    username: COLLECTION_DEV
+    password: orcl
+    driver-class-name: oracle.jdbc.driver.OracleDriver
+    # mysql: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    # 配置Druid的其他参数，以下配置必须增加一个配置文件才能有效
+    druid:
+      # 初始化大小，最小，最大
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000 # 获取连接等待超时的时间
+      time-between-eviction-runs-millis: 60000 # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      min-evictable-idle-time-millis: 300000 # 配置一个连接在池中最小生存的时间，单位是毫秒
+      # 测试连接（注意oracle和mysql的测试连接方式不同）
+      # oracle：SELECT 1 FROM DUAL
+      # mysql：SELECT 1
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      filters: stat, wall  # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      pool-prepared-statements: true # 打开PSCache，并且指定每个连接上PSCache的大小
+      max-pool-prepared-statement-per-connection-size: 20
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=200 # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+      use-global-data-source-stat: true # 合并多个DruidDataSource的监控数据
+      # 添加不需要忽略的格式信息
+      web-stat-filter:
+        enabled: false
+        url-pattern: /*
+        exclusions: /druid/*,*.js,*.gif,*.jpg,*.png,*.css,*.ico
+      stat-view-servlet:
+        url-pattern: /druid/*
+        login-username: admin #登陆账号
+        login-password: 123456 #登陆密码
+        reset-enable: false #是否能够重置数据
+        allow: #白名单
+        deny: #IP黑名单 (存在共同时，deny优先于allow) : 如果满足deny的话提示:Sorry, you are not permitted to    

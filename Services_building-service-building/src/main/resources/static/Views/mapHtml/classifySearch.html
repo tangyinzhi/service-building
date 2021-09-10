@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>分类查询</title>
+    <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/changeLayui.css"/>
+    <!-- jquery脚本1.9.1 -->
+    <script type="text/javascript" src="../../js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="../../js/plugins/jquery.xml2json.js"></script>
+    <!-- layui -->
+    <script type="text/javascript" src="../../lib/layui/layui.js"></script>
+    <!--<script type="text/javascript" src="../../lib/layui/layui.all.js"></script>-->
+    <script type="text/javascript" src="../../js/stampMap/classifySearch.js"></script>
+    <script type="text/javascript" src="../../js/stampMap/ModelDetail.js"></script>
+    <script type="text/javascript" src="../../js/config/config.js"></script>
+    <style>
+        body {
+            width: 470px;
+            margin-left: 15px;
+        }
+        .layui-form-label {
+            padding: 9px 0px;
+            font-weight: bolder;
+            color: #666;
+            margin-left: -15px;
+            font-size: 14px;
+            font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+        }
+        .layui-anim-upbit>dd {
+            font-size: 12px;
+            font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+        }
+        .layui-select-title{
+            font-size: 14px;
+            font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+        }
+        form{
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+
+<body style="width: 470px">
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <label class="layui-form-label">搜索字段:</label>
+        <div class="layui-input-block">
+            <select name="peParameter" id="peParameter" lay-filter="peParameterFilter">
+                <option value="OB_STRU">结构类型</option>
+                <option value="OB_BASE_FORM">基础形式</option>
+                <option value="OB_ELEVATOR_INFO">电梯信息</option>
+                <option value="OB_DOWN_INFO">地下空间利用信息</option>
+                <option value="OB_DESIGN_CRITERIA">设计标准</option>
+                <option value="OB_STATUS">建筑状态</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">字段值:</label>
+        <div class="layui-input-block">
+            <select name="peName" id="peName" lay-filter="peNameFilter">
+            </select>
+        </div>
+    </div>
+</form>
+<div id="tablediv" class="enter" region="center">
+
+    <!--<div class="cardTitle">搜索结果</div>-->
+    <div id="dgDiv">
+        <!--数据表格-->
+        <table class="layui-hide" id="tableId" lay-filter="tableFilter"></table>
+    </div>
+</div>
+
+</body>
+<script>
+
+</script>
+</html>

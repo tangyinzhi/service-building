@@ -1,0 +1,50 @@
+﻿<div class="statusbar">
+    <div class="nav navbar-nav navbar-left" style="max-width: 470px;">
+        <div style="margin-left: 20px;"> ©2018 <a href="#" @click="sysbrowser('https://www.bjxbsj.cn')">北京西部世界科技有限公司</a><small style="margin-left: 20px;word-break: break-all;">{{updateinfo}}</small></div>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+        <li style="margin-right: 20px;">
+            <div>
+                <a class="btn btn-xs   btn-info" href="#" data-toggle="tooltip" data-placement="top" title="关于" @click="qrcode()">
+                    <span class="glyphicon  glyphicon-qrcode" style="margin-right: 2px;"></span>QQ<span class="badge"></span>
+                </a>
+            </div>
+        </li>
+        <li style="margin-right: 20px;" v-if="iselectron">
+            <div class="btn-group dropup">
+                <a class="btn btn-xs   btn-success" href="/server/folders.html">
+                    <span class="glyphicon  glyphicon-list"></span>服务管理<span class="badge"></span>
+                </a>
+                <button type="button" class="btn btn-xs  btn-success dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    <span class="sr-only">切换</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="/server/terrains.html">地形服务</a></li>
+                    <li><a href="/server/images.html">影像服务</a></li>
+                    <li><a href="/server/folders.html">文件夹(3dtiles)服务</a></li>
+                </ul>
+            </div>
+        </li>
+        <li style="margin-right: 20px;" v-if="iselectron">
+            <div class="btn-group dropup">
+                <a class="btn btn-xs   btn-warning" href="/tasks/tasks.html">
+                    <span class="glyphicon  glyphicon-list" style="margin-right: 2px;"></span>数据处理任务<span class="badge">{{taskcount}}</span>
+                </a>
+                <button type="button" class="btn btn-xs  btn-warning dropdown-toggle" data-toggle="dropdown">
+                    <span class="caret"></span>
+                    <span class="sr-only">切换</span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a href="/tasks/scene.html">场景处理</a></li>
+                    <li><a href="/tasks/terrain.html">地形处理</a></li>
+                    <li><a href="/tasks/image.html">影像处理</a></li>
+                    <li><a href="/tasks/pointcloud.html">点云处理</a></li>
+                    <li><a href="/tasks/osgb.html">倾斜处理</a></li>
+                    <li><a href="/tasks/building.html">建筑物处理</a></li>
+                    <li><a href="/tasks/bim.html">BIM处理</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>

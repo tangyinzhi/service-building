@@ -1,0 +1,79 @@
+﻿<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>三维综合应用系统</title>
+    <!--<link rel="stylesheet" type="text/css" href="css/easyui/default/easyui.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="css/easyui/icon.css">-->
+    <link rel="stylesheet" type="text/css" href="css/mCustomScrollbar/jquery.mCustomScrollbar.css">
+    <!--<link rel="stylesheet" type="text/css" href="css/common.css">-->
+    <link rel="stylesheet" type="text/css" href="lib/layui/css/layui.css">
+    <!-- jquery脚本1.9.1 -->
+    <script type="text/javascript" src="js/login/jquery-1.9.1.min.js"></script>
+    <style type="text/css">
+
+    </style>
+</head>
+<body style="position:absolute; left:0; top:0; right:0; bottom:0; ">
+<!-- 主框架（包括左侧leftpanel、右侧上菜单栏tools、右侧中earth、右侧下视点页面） START -->
+<div id="mainDiv" style="height:100%;width:100%;">
+
+    <!-- 右下侧面板（二级菜单栏、三维球、视点功能页面）：START -->
+    <div id="mainEarth" style="height:100%;width:100%;">
+
+        <!-- 上（二级菜单栏）：START -->        <div id="toolDiv">
+            <div class="right_cont" id="div_toolBar">
+                <div id="toolBar_ios">
+                </div>
+            </div>
+        </div>
+        <!-- 上（二级菜单栏）：END -->
+        <!-- 中（三维球）：START -->
+        <div id="MapTwo" style="height:100%;width:100%;">
+            <!-- 中左（三维球）：START -->
+            <div id="tool" class="kePublic" >
+                <!--效果html开始-->
+                <div class="content">
+                </div>
+                <!--效果html结束-->
+                <div class="clear"></div>
+            </div>
+            <!-- 中左（三维球）：END -->
+            <div id="map3dv" style="height:100%;width:100%;float:right;border:0">
+                <div id="earthDiv" class="whole" style="height:100%;width:100%;"></div>
+                <div id="earthDiv1" class="hide"></div>
+            </div>
+        </div>
+
+        <!-- 中（三维球）：END -->
+    </div>
+    <!-- 右下侧面板（二级菜单栏、三维球、视点功能页面）：END -->
+</div>
+
+<!-- 空间参考中用到 -->
+<object id="dataProcess" classid="clsid:DDA7E893-8EEE-4A1E-A506-867932BD0FB9" style="display:none;"></object>
+
+
+
+<!-- xml转json -->
+<script type="text/javascript" src="js/plugins/jquery.xml2json.js"></script>
+<script src="js/plugins/jquery.mCustomScrollbar.concat.min.js"></script>
+
+<!-- layui -->
+<script type="text/javascript" src="lib/layui/layui.js"></script>
+
+<!-- 三维球：*重要* -->
+<script type="text/javascript" src="js/stamplib/StampBasemapEarth.js"></script>
+
+<script type="text/javascript" src="../../js/config/config.js"></script>
+<script type="text/javascript" src="../../js/stampMap/logTool.js"></script>
+<script>
+    var divHeight = $(window).height();
+    $("#mainDiv").height(divHeight);
+    $("#mainEarth").height(divHeight);
+    $("#map3dv").height(divHeight);
+
+    $("#earthDiv").height(divHeight-5);
+</script>
+</body>
+</html>

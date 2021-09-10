@@ -1,0 +1,18 @@
+﻿<div class="mouseposition">
+    <center>
+        <span>
+            点击位置[
+            <span> 经度:{{mouse.longitude|f_bs}}</span>
+            <span> 纬度:{{mouse.latitude|f_bs}}</span>
+            <span> 高程:{{mouse.height|f_m}}</span> ]
+        </span>
+        <span v-show="fps>0">fps:{{fps}}</span>
+        <span style="margin-left: 100px;">
+            相机位置[
+            <span> 经度:{{camera.longitude|f_bs}}</span>
+            <span> 纬度:{{camera.latitude|f_bs}}</span>
+            <span> 高程:{{camera.height|f_m}}</span>
+            <span> 朝向:{{camera.heading|f_a}}</span> ]
+        </span>
+    </center>
+</div>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.dao.building.mapper.BtColumnsCommentsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lzctzk.address.dao.building.entity.BtColumnsComments">
+        <id column="ID" property="id"/>
+        <result column="TABLE_NAME_S" property="tableNameS"/>
+        <result column="COLUMN_NAME_S" property="columnNameS"/>
+        <result column="DATA_TYPE" property="dataType"/>
+        <result column="DATA_LENGTH" property="dataLength"/>
+        <result column="DATA_PRECISION" property="dataPrecision"/>
+        <result column="DATA_SCALE" property="dataScale"/>
+        <result column="NULLABLE_S" property="nullableS"/>
+        <result column="COLUMN_ID" property="columnId"/>
+        <result column="COMMENTS" property="comments"/>
+        <result column="NULLENABLE" property="nullenable"/>
+        <result column="DATA_DEFAULT" property="dataDefault"/>
+        <result column="ISDELETE" property="isdelete"/>
+        <result column="NULLENUM" property="nullenum"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TABLE_NAME_S, COLUMN_NAME_S, DATA_TYPE, DATA_LENGTH, DATA_PRECISION, DATA_SCALE, NULLABLE_S, COLUMN_ID,
+        COMMENTS, NULLENABLE, ID, DATA_DEFAULT, ISDELETE, NULLENUM
+    </sql>
+
+</mapper>

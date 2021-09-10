@@ -1,0 +1,261 @@
+
+input[type=text]::-ms-clear { display: none; }
+
+.layui-btn-primary-change {
+    border: 1px solid #C9C9C9;
+}
+
+.layui-btn-change {
+    background-color: #1c8bf7;
+    height: 28px;
+    line-height: 28px;
+    border-radius: 6px;
+    height: 28px;
+}
+
+.layui-btn-change-search {
+    background-color: #1c8bf7;
+    line-height: 28px;
+    border-radius: 6px;
+    height: 28px;
+}
+
+.layui-btn .layui-icon {
+    font-size: 2px;
+}
+
+.layui-form-label-change {
+    padding: 4px 1px;
+    width: initial;
+    text-align: left;
+}
+
+.layui-form-label-change-font-size {
+    font-size: 18px;
+}
+
+.layui-icon-color {
+    color: #079df5;
+}
+
+.layui-form-onswitch {
+    border-color: #079df5;
+    background-color: #079df5;
+}
+
+.layui-table {
+    width: 100%;
+    /*background-color: #f5f5f5;*/
+    color: #666
+}
+
+/*.layui-table tbody tr:hover, .layui-table thead tr, .layui-table-click, .layui-table-header, .layui-table-hover, .layui-table-mend, .layui-table-patch, .layui-table-tool, .layui-table-total, .layui-table-total tr, .layui-table[lay-even] tr:nth-child(even) {*/
+/*!*background-color: #f2f2f2*!*/
+/*background-color: #2491fc*/
+/*}*/
+.layui-flow-more a cite {
+    padding: 0 20px;
+    border-radius: 3px;
+    background-color: #ecf1f7;
+    color: #333;
+    font-style: normal
+}
+
+.layui-header {
+    background: url(../images/topback.png) no-repeat;
+}
+
+.layui-logo-change {
+    background-image: url(../images/logo.png);
+    width: 340px;
+    height: 65px;
+    position: absolute;
+    left: 1px;
+    top: -3px;
+}
+
+.layui-layout-admin .layui-side {
+    top: 0px;
+    width: 200px;
+    overflow: hidden;
+}
+
+.layui-input-change {
+    height: 30px;
+}
+
+body {
+    font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+}
+
+.layui-nav-item-i {
+    color: white;
+    font-size: 16px;
+}
+
+.layui-nav .layui-nav-item a {
+    color: #fff;
+}
+
+.layui-side-scroll-u {
+    margin-top: 10px;
+}
+
+.layui-tab-brief > .layui-tab-title .layui-this {
+    color: #2491fc;
+}
+
+.layui-tab-brief > .layui-tab-more li.layui-this:after, .layui-tab-brief > .layui-tab-title .layui-this:after {
+    border-bottom: 2px solid #2491fc;
+}
+
+.layui-nav-tree .layui-nav-bar {
+    background-color: #1c64b0;
+}
+
+.layui-nav {
+    background-color: #2491fc !important;
+}
+
+.layui-side {
+    left: 0px;
+    border-top: 3px solid white;
+}
+
+.layui-bg-black {
+    background-color: #2491fc !important;
+}
+
+.layui-nav-child dd.layui-this {
+    background-color: #1c64b0 !important;
+}
+
+.layui-nav-child dd{
+	 background-color: #2491fc;
+}
+.layui-nav-tree .layui-nav-item .layui-nav-child dd:hover {
+    background-color: #1767b8;
+}
+.layui-nav .layui-this:after, .layui-nav-bar, .layui-nav-tree .layui-nav-itemed:after {
+    background-color: #1767b8;
+}
+.layui-nav-tree .layui-nav-child .layui-nav-ite dd .layui-this{
+	background-color: #1767b8;
+}
+
+/* .layui-nav-tree .layui-nav-child dd .layui-this, .layui-nav-tree .layui-nav-child dd .layui-this a, .layui-nav-tree .layui-this, .layui-nav-tree .layui-this > a, .layui-nav-tree .layui-this > a:hover {
+    background-color: #1767b8;
+}
+
+.layui-nav-tree .layui-nav-item a:hover {
+    background-color: #2491fc;
+} */
+
+.layui-btn-group .layui-btn-primary:hover {
+    border-color: #C9C9C9;
+    color: #2491fc;
+}
+
+.layui-nav-tree .layui-nav-itemed:after {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 5px;
+        height: 0;
+        background-color: #1c64b0;
+        transition: all .2s;
+        -webkit-transition: all .2s
+}
+
+.layui-table td, .layui-table thead th {
+    font-size: 12px;
+    /*font-weight: bolder;*/
+}
+
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background-color: #2491fc;
+}
+
+.layui-side, .layui-bg-black, .kit-side-fold{
+    transition: width 0.3s;
+    -moz-transition: width 0.3s;
+    -webkit-transition: width 0.3s;
+    -o-transition: width 0.3s;
+}
+
+.layui-body, .layui-footer {
+    transition: left 0.3s;
+    -moz-transition: left 0.3s;
+    -webkit-transition: left 0.3s;
+    -o-transition: left 0.3s;
+}
+.layui-body, .layui-footer ,.content-body  {
+    transition: left 0.3s;
+    -moz-transition: left 0.3s;
+    -webkit-transition: left 0.3s;
+    -o-transition: left 0.3s;
+}
+.layui-nav {
+    transition: left 0.4s;
+    -moz-transition: left 0.4s;
+    -webkit-transition: left 0.4s;
+    -o-transition: left 0.4s;
+}
+.changeDiv {
+    position: absolute;
+    bottom: 80px;
+    left: 181px;
+    text-align: center;
+    padding: 12px 0px;
+    float: right;
+    z-index: 999;
+    background-color:  #1c65b0;
+    width: 18px;
+}
+
+/* .changeDiv:hover {
+    background: #2491fc;
+} */
+.layui-tree-branch{
+    content: "\e638";
+}
+.layui-btn-primary:hover {
+    border-color: #2491fc;
+    color: #2491fc;
+}
+.layui-tree li i {
+    color: #333;
+}
+.layui-tree a cite{
+    color: #333;
+}
+.treeCard{
+    margin-bottom: 0px;
+    border-right: 1px solid #d6d4d4;
+    margin-right: 8px;
+    width: 256px;
+    float: left;
+}
+.treeCardLeft{
+    width: calc(100% - 270px);
+    float: right;
+}
+.layui-nav-child {
+    background-color: #1e9fff;
+}
+.layui-layout-admin .layui-header {
+    background-color: #2491fc
+}
+.layui-laypage .layui-laypage-curr .layui-laypage-em {
+    background-color: #2491fc;
+}
+.operationTpl-icon{
+    color: #086fd4;
+}
+
+.layui-form-label{
+    width: auto;
+}
+.layui-nav-tree .layui-nav-child dd.layui-this, .layui-nav-tree .layui-nav-child dd.layui-this a, .layui-nav-tree .layui-this, .layui-nav-tree .layui-this>a, .layui-nav-tree .layui-this>a:hover {
+    background-color: #187ada !important;
+}

@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.pojo.building.mapper.RoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lzctzk.address.dao.building.entity.BtRole">
+        <result column="ID" property="id"/>
+        <result column="NAME" property="name"/>
+        <result column="ISSYSTEM" property="issystem"/>
+        <result column="REMARK" property="remark"/>
+        <result column="PERMISSION" property="permission"/>
+        <result column="SYSTEM_ID" property="systemId"/>
+        <result column="SYSTEM_NAME" property="systemName"/>
+        <result column="RIGHTINFO" property="rightinfo"/>
+        <result column="DATAINFO" property="datainfo"/>
+        <result column="CREATE_USERID" property="createUserid"/>
+        <result column="CREATE_IP" property="createIp"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <result column="UPDATE_USERID" property="updateUserid"/>
+        <result column="UPDATE_IP" property="updateIp"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+        <result column="DATAINFOERWEI" property="datainfoerwei"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, NAME, ISSYSTEM, REMARK, PERMISSION, SYSTEM_ID, SYSTEM_NAME, RIGHTINFO, DATAINFO, CREATE_USERID, CREATE_IP,
+        CREATE_TIME, UPDATE_USERID, UPDATE_IP, UPDATE_TIME, DATAINFOERWEI
+    </sql>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List_Permission">
+        ID, NAME, DISPLAY_NAME, FULLNAME, PARENTID, URL, SORT, ICON, VISIBLE, NECESSARY, REMARK, TYPE,
+        PERMISSION_STRING, TAG, LELEL, TITLE, CREATE_USERID, CREATE_IP, CREATE_TIME, UPDATE_USERID, UPDATE_IP,
+        UPDATE_TIME, SYSTEM_ID, SYSTEM_NAME, ISDELETE
+    </sql>
+    <!-- 查询总记录数 -->
+    <select id="selectCount" resultType="long">
+        select count(*)
+        from BT_ROLE
+    </select>
+    <!-- 查询总记录数 -->
+    <select id="selectMaxID" resultType="long">
+        select MAX (ID)
+        from BT_ROLE
+    </select>
+    <!-- 查询功能权限 -->
+    <select id="selectPermissionByRoleid" parameterType="string"
+            resultType="com.lzctzk.address.dao.building.entity.BtPermission">
+        SELECT
+        aa.ID,
+        aa.NAME,
+        aa.DISPLAY_NAME,
+        aa.FULLNAME,
+        aa.PARENTID,
+        aa.URL,
+        aa.SORT,
+        aa.ICON,
+        aa.VISIBLE,
+        aa.NECESSARY,
+        aa.REMARK,
+        aa.BP_TYPE,
+        aa.PERMISSION_STRING,
+        aa.TAG,
+        aa.BP_LEVEL,
+        aa.TITLE,
+        aa.CREATE_USERID,
+        aa.CREATE_IP,
+        aa.CREATE_TIME,
+        aa.UPDATE_USERID,
+        aa.UPDATE_IP,
+        aa.UPDATE_TIME,
+        aa.SYSTEM_ID,
+        aa.SYSTEM_NAME
+        FROM
+        BT_PERMISSION aa
+        INNER JOIN BT_ROLE bb ON aa.SYSTEM_ID = bb.SYSTEM_ID
+        AND bb.ID = #{roleId,jdbcType=VARCHAR}
+        WHERE
+        aa.ISDELETE =0
+    </select>
+    <!-- 查询数据权限 -->
+    <select id="selectDataAuthByRoleid" parameterType="string"
+            resultType="com.lzctzk.address.dao.building.entity.BtDataAuth">
+        SELECT
+        aa.ID,
+        aa.DATA_NAME,
+        aa.CREATE_USERID,
+        aa.CREATE_IP,
+        aa.UPDATE_USERID,
+        aa.UPDATE_IP,
+        aa.UPDATE_TIME,
+        aa.PID,
+        aa.SYSTEM_ID,
+        aa.SYSTEM_NAME
+        FROM
+        BT_DATA_AUTH aa
+        INNER JOIN BT_ROLE bb ON aa.SYSTEM_ID = bb.SYSTEM_ID
+        AND bb.ID = #{roleId,jdbcType=VARCHAR}
+        WHERE
+        aa.ISDELETE =0
+    </select>
+    <!-- 查询数据权限 -->
+    <select id="selectDataSeviceByRoleid" parameterType="string"
+            resultType="com.lzctzk.address.dao.building.entity.BtDataService">
+        SELECT
+        aa.ID,
+        aa.SERVICES_NAME,
+        aa.SERVICES_FULLNAME,
+        aa.SERVICES_TYPE,
+        aa.SERVICES_DESCRIPTION,
+        aa.SERVICES_ADDR,
+        aa.SERVICES_HELP_ADDR,
+        aa.SERVICES_SAMPLE_ADDR,
+        aa.HANDER_DATE,
+        aa.HANDER_ID,
+        aa.CREATE_DATE,
+        aa.CREATE_ID,
+        aa.VISITS_NUMBER,
+        aa.SECURITY_LEVEL,
+        aa.SERVICES_DETAILS,
+        aa.KEYWORD,
+        aa.MAPRANGE,
+        aa.SYSTEM_ID,
+        aa.SYSTEM_NAME,
+        aa.ISDELETE
+        FROM
+        BT_DATA_SERVICE aa
+        WHERE
+        aa.ISDELETE =0
+    </select>
+</mapper>

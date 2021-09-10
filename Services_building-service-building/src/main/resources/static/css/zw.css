@@ -1,0 +1,43 @@
+html{width:100%;height: 100%;}
+body{overflow:auto;width:100%;height:100%;}
+.oflow{
+	word-break:normal;/* 不换行 */
+    white-space:normal;/* 不换行 */
+    overflow:hidden;
+	text-overflow:ellipsis;
+	}
+a:link{color:black;} 
+a:visite{color:blue}
+a:hover{color:#2491fc}
+a:active{color: #2491fc;}
+
+.title_top{height: 150px;font-size: 300%;}
+
+.nation{margin-left: 10%;}
+.nation_near{margin-left: 5%;}
+
+.type_size{font-size: 200%;}
+.pg_nav_q{height: 30px;padding:5px 0px 0px 85%;font-size:120%;}
+.pg_picture{height:350px;width:100%;background: url(../images/icon2.jpg);}
+/*.pg_nav_w{width:255px; min-height: 300px; position: relative; top: -66px; z-index: 999; float: left; overflow: hidden}*/
+.pg_nav{idth:255px; margin-bottom: 6px; overflow: hidden;}
+.pg_nav h2{width:100%; height: 72px; background: #2491fc; overflow: hidden; text-align: center; color: #FFFFFF; font-weight: 500; font-size: 24px; line-height: 24px; padding-top: 33px; margin-bottom: 1px;}
+.pg_nav h2 p{ font-size: 12px; font-weight: lighter; text-transform:uppercase;}
+.pg_nav div{position: relative; background: #e2e2e2; }
+/*.pg_nav div a{ display:block; width: 100%; height: 55px; line-height: 55px; margin-bottom: 1px; font-size: 14px; color: #333333; overflow: hidden; transition: all .4s ease 0s; position: relative; z-index: 55;}*/
+.pg_nav div a span{font-size:18px; padding: 0 12px 0 20px;}
+.pg_nav div p{width:0%; height: 55px; /*opacity: 0;*/ background: #2491fc; position: absolute; top: 0; left: 0; z-index: 2; transition: all .4s ease 0s;}
+.pg_nav div:hover a{color:#FFFFFF;}
+.pg_nav div:hover p{width:100%; opacity: 1;}
+.pg_nav .pg_nuw a{color:#FFFFFF;}
+.pg_nav .pg_nuw p{width:100%; opacity: 1;}
+.pg_nav_a p{ margin-bottom: 3px; text-transform:uppercase;}
+.pg_nav_h{min-height: 30px; position: relative;margin-left: 20px; float: left; overflow: hidden;}
+.pg_nav_l{ width:100%;height: 40px; position: relative; padding:10px 0 10px 0;overflow: hidden;float: left;font-size: 70%;text-align: center;color: #000;}
+.pg_nav_p{height: 5%;text-align: center;}
+
+.text_top{height: 0px;font-size: 200%;}
+.text_body{min-height:200px;text-indent:2em;font-size:120%;}
+.text_tail{height: 30px;padding:5px 0px 0px 85%;font-size:120%;}
+
+#mapShowBtn{margin-bottom: 10px;}

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.dao.com.lzctzk.address.dao.building.mapper.RelaGroupRoleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lzctzk.address.dao.building.entity.RelaGroupRole">
+        <id column="ID" property="id"/>
+        <result column="DATA_GROUP_ID" property="dataGroupId"/>
+        <result column="ROLE_ID" property="roleId"/>
+        <result column="CREATE_USER_ID" property="createUserId"/>
+        <result column="CREATE_IP" property="createIp"/>
+        <result column="CREATE_TIME" property="createTime"/>
+        <result column="UPDATE_USER_ID" property="updateUserId"/>
+        <result column="UPDATE_IP" property="updateIp"/>
+        <result column="UPDATE_TIME" property="updateTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, DATA_GROUP_ID, ROLE_ID, CREATE_USER_ID, CREATE_IP, CREATE_TIME, UPDATE_USER_ID, UPDATE_IP, UPDATE_TIME
+    </sql>
+
+</mapper>

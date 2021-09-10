@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.pojo.building.mapper.ColumnsCommentsMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lzctzk.address.dao.building.entity.BtColumnsComments">
+        <id column="ID" property="id"/>
+        <result column="TABLE_NAME_S" property="tableNameS"/>
+        <result column="COLUMN_NAME_S" property="columnNameS"/>
+        <result column="DATA_TYPE" property="dataType"/>
+        <result column="DATA_LENGTH" property="dataLength"/>
+        <result column="DATA_PRECISION" property="dataPrecision"/>
+        <result column="DATA_SCALE" property="dataScale"/>
+        <result column="NULLABLE_S" property="nullableS"/>
+        <result column="COLUMN_ID" property="columnId"/>
+        <result column="COMMENTS" property="comments"/>
+        <result column="NULLENABLE" property="nullenable"/>
+        <result column="DATA_DEFAULT" property="dataDefault"/>
+        <result column="ISDELETE" property="isdelete"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TABLE_NAME_S, COLUMN_NAME_S, DATA_TYPE, DATA_LENGTH, DATA_PRECISION, DATA_SCALE, NULLABLE_S, COLUMN_ID,
+        COMMENTS, NULLENABLE, ID, DATA_DEFAULT, ISDELETE
+    </sql>
+    <!-- 新增 -->
+    <update id="AddColumn" parameterType="com.lzctzk.address.dao.building.entity.BtColumnsComments">
+        alter table ${tableNameS} add ( ${columnNameS}
+        <if test="@com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(dataType)">
+            <if test="dataLength!=0 and @com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(dataScale) and dataScale != 0">
+                ${dataType} (${dataLength},${dataScale} )
+            </if>
+            <if test="dataLength!=0 and @com.lzctzk.address.util.empty.EmptyUtil@isEmpty(dataScale)">
+                ${dataType} (${dataLength})
+            </if>
+            <if test="dataLength ==0 "><!-- 默认大小为20-->
+                ${dataType} (20)
+            </if>
+        </if>
+        <!-- <if test="@com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(dataDefault) ">
+             default  #{dataDefault}
+        </if>-->
+        <if test="@com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(nullenable) ">
+            <if test="nullableS!='Y'.toString() ">
+                not null
+            </if>
+            <if test="nullableS=='Y'.toString() "><!-- 默认大小为20-->
+                null
+            </if>
+        </if>
+        )
+    </update>
+    <!-- 更新 -->
+    <update id="UpdateColumn" parameterType="com.lzctzk.address.dao.building.entity.BtColumnsComments">
+        alter table ${tableNameS} modify ( ${columnNameS}
+        <if test="@com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(dataType)">
+            <if test="dataLength!=0 and @com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(dataScale) and dataScale != 0">
+                ${dataType} (${dataLength},${dataScale} )
+            </if>
+            <if test="dataLength!=0 and @com.lzctzk.address.util.empty.EmptyUtil@isEmpty(dataScale)">
+                ${dataType} (${dataLength})
+            </if>
+            <if test="dataLength ==0 "><!-- 默认大小为20-->
+                ${dataType} (20)
+            </if>
+        </if>
+        <!-- <if test="@com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(dataDefault) ">
+             default  #{dataDefault}
+        </if>-->
+        <if test="@com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(nullenable) ">
+            <if test="nullableS=='N'.toString() ">
+                not null
+            </if>
+            <if test="nullableS=='Y'.toString() "><!-- 默认大小为20-->
+                null
+            </if>
+        </if>
+        )
+    </update>
+    <!-- 修改字段名称 -->
+    <update id="ChangeName">
+        alter table ${tableNameS} rename column ${oldName} to ${newName}
+    </update>
+    <!-- 修改字段注释 -->
+    <update id="ChangeComments" parameterType="com.lzctzk.address.dao.building.entity.BtColumnsComments">
+        comment on column ${tableNameS} .${columnNameS} is '${comments}'
+    </update>
+    <!-- 获取表格的字段 -->
+    <select id="selectYSColumns" resultType="com.lzctzk.address.dao.building.entity.BtColumnsComments"
+            parameterType="java.lang.String">
+        SELECT
+        a.TABLE_NAME as TABLE_NAME_S,
+        a.COLUMN_NAME as COLUMN_NAME_S,
+        a.DATA_TYPE,
+        a.DATA_LENGTH,
+        a.DATA_PRECISION,
+        a.DATA_SCALE,
+        a.NULLABLE as NULLABLE_S,
+        a.COLUMN_ID,
+        a.DATA_DEFAULT,
+        b.comments
+        FROM
+        user_tab_columns a,
+        user_col_comments b
+        WHERE
+        b.TABLE_NAME = a.TABLE_NAME
+        AND a.COLUMN_NAME = b.COLUMN_NAME
+        AND a.TABLE_NAME = 'OT_BUILDING'
+        AND a.TABLE_NAME IS NOT NULL
+        <if test=" @com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(columnNameS) ">
+            AND a.COLUMN_NAME = #{columnNameS}
+        </if>
+    </select>
+    <!-- 获取字段名 -->
+    <select id="selectColumnNameS" resultType="java.lang.String" parameterType="java.lang.String">
+        SELECT
+        COLUMN_NAME_S
+        FROM
+        BT_COLUMNS_COMMENTS
+        WHERE
+        ISDELETE = 0
+        <if test=" @com.lzctzk.address.util.empty.EmptyUtil@isNotEmpty(nullenable) ">
+            AND NULLENABLE = #{nullenable}
+        </if>
+    </select>
+
+</mapper>

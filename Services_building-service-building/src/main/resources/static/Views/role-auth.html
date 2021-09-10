@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>角色授权</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui/css/layui.css">
+    <link rel="stylesheet" href="../css/scroll-bar.css">
+    <link rel="stylesheet" href="../css/sub-page.css">
+    <link rel="stylesheet" href="../css/font.css">
+</head>
+<body>
+    <div class="ok-body">
+        <!--面包屑导航区域-->
+        <div class="ok-body-breadcrumb">
+            <span class="layui-breadcrumb">
+                <a><cite>首页</cite></a>
+                <a><cite>系统管理</cite></a>
+                <a><cite>用户列表</cite></a>
+                <a><cite>角色授权</cite></a>
+            </span>
+            <a class="layui-btn layui-btn-primary layui-btn-small" href="javascript:location.replace(location.href);" title="刷新">
+                <i class="layui-icon layui-icon-refresh"></i>
+            </a>
+        </div>
+        
+
+        <!--form表单-->
+        <form class="layui-form layui-form-pane ok-form">
+            <!--权限树-->
+            <div class="layui-form-item">
+                <label class="layui-form-label">服务权限</label>
+                <div class="layui-input-block">
+                    <div id="authTreeData"></div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">数据权限</label>
+                <div class="layui-input-block">
+                    <div id="authTreeDataPer"></div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">功能权限</label>
+                <div class="layui-input-block">
+                    <div id="authTree"></div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-btn-normal" lay-submit lay-filter="auth">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--js逻辑-->
+    <script src="../lib/layui/layui.js"></script>
+    <script src="../js/login/jquery-1.9.1.min.js"></script>
+    <script src="../js/login/jquery.cookie.js"></script>
+    <script src="../js/login/jquery.jsoncookie.js"></script>
+    <script src="../js/user.js"></script>
+    <script src="../js/config/config.js"></script>
+    <script src="../js/tool.js"></script>
+    <script src="../js/Role/roleAuth.js"></script>
+</body>
+</html>

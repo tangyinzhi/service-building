@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>添加角色</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="../lib/layui/css/layui.css">
+    <link rel="stylesheet" href="../css/scroll-bar.css">
+    <link rel="stylesheet" href="../css/sub-page.css">
+    <link rel="stylesheet" href="../css/font.css">
+    <style>
+        .layui-form-label {
+            width:120px !important;
+        }
+        .layui-input-block {
+            margin-left: 120px !important;
+        }
+        .layui-form-item .layui-input-inline {
+            float: left;
+            width: 330px;
+            margin-right: 0px;
+            width: 71%;
+        }
+    </style>
+</head>
+<body>
+    <div class="ok-body">
+        <!--面包屑导航区域-->
+        <div class="ok-body-breadcrumb">
+            <span class="layui-breadcrumb">
+                <a><cite>首页</cite></a>
+                <a><cite>系统管理</cite></a>
+                <a><cite>用户列表</cite></a>
+                <a><cite>添加角色</cite></a>
+            </span>
+            <a class="layui-btn  layui-btn-small" href="javascript:location.replace(location.href);" title="刷新">
+                <i class="layui-icon layui-icon-refresh"></i>
+            </a>
+        </div>
+        <!--form表单-->
+        <form class="layui-form layui-form-pane ok-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">系统名称</label>
+                <div class="layui-input-inline">
+                    <select id="systemId" name="systemId" lay-filter="SystemnameFilter" lay-verify="required">
+                        <option value="">请选择</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">角色名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" id="name" placeholder="请输入角色名" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否是管理员</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="issystem" value="1" title="是">
+                    <input type="radio" name="issystem" value="0" title="否" checked>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">备注</label>
+                <div class="layui-input-block">
+                    <input type="text" name="remark" id="remark" placeholder="请输入备注" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <!--<div class="layui-form-item">
+                <label class="layui-form-label">功能权限</label>
+                <div class="layui-input-block">
+                    <div id="authTree"></div>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">数据权限</label>
+                <div class="layui-input-block">
+                    <div id="authTreeData"></div>
+                </div>
+            </div>-->
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-btn-normal" lay-submit lay-filter="add">立即提交</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!--js逻辑-->
+    <script src="../js/config/config.js"></script>
+    <script src="../lib/layui/layui.js"></script>
+    <script src="../js/tool.js"></script>
+    <script src="../js/login/jquery-1.9.1.min.js"></script>
+    <script src="../js/login/jquery.cookie.js"></script>
+    <script src="../js/login/jquery.jsoncookie.js"></script>
+    <script src="../js/user.js"></script>
+    <script src="../js/Role/roleAdd.js"></script>
+</body>
+</html>

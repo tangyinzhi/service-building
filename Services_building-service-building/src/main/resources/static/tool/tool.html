@@ -1,0 +1,148 @@
+﻿<div id="tool" class="">
+	<div class="toolBarRight animation-slide-top no-print-view">
+		<div class="btn-group">
+			<button type="button" class="btn btn-link toolBarRight-btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">                                    
+				<i class="fa fa-map"></i>底图 <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu dropdown-menu-right toolBarRight-dropdown-menu" style="min-width: 110px;">
+				<li class="widget-btn" v-for="(item,index) in baselayers">
+					<a href="javascript:void(0)" v-on:click="setbaselayer(index)"><i class="fa fa fa-calculator"></i>{{item.name}}</a>
+				</li>
+			</ul>
+		</div>
+		<button type="button" class="widget-btn btn btn-link toolBarRight-btn " data-widget="widgets/manageLayers/widget.js" v-on:click="DisplayOrHideLayer()">                            
+			<i class="fa fa-tasks"></i>图层                       
+		</button>
+		<div class="btn-group">
+			<button type="button" class="btn btn-link toolBarRight-btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">                                    
+				<i class="fa fa-list"></i>地图操作 <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu dropdown-menu-right toolBarRight-dropdown-menu" style="min-width: 110px;">
+				<li class="widget-btn">
+					<a href="javascript:void(0)" v-on:click="SetRoaming(1)"><i class="fa fa-hand-paper-o"></i>漫游</a>
+				</li>
+				<li class="widget-btn">
+					<a href="javascript:void(0)" v-on:click="SetRoaming(0)"><i class="fa fa-mouse-pointer"></i>点选</a>
+				</li>
+				<li class="widget-btn">
+					<a href="javascript:void(0)" v-on:click="transparent()"><i class="fa fa-transgender"></i>地下模式</a>
+				</li>
+				<li class="widget-btn">
+					<a href="javascript:void(0)" v-on:click="SetMode('drawLine')"><i class="fa fa-object-group"></i>空间测距</a>
+				</li>
+				<li class="widget-btn">
+					<a href="javascript:void(0)" v-on:click="SetMode('drawPloy')"><i class="fa fa-pencil-square"></i>空间测面</a>
+				</li>
+				<li class="widget-btn">
+					<a href="javascript:void(0)" v-on:click="clearDrawingBoard()"><i class="fa fa-times-circle"></i>清除测量</a>
+				</li>
+				<li class="widget-btn" data-widget="widgets/addmarker/widget.js">
+					<a href="javascript:void(0)" v-on:click="printImg()"><i class="fa fa-print"></i>地图输出</a>
+				</li>	
+				<li class="widget-btn" data-widget="widgets/addmarker/widget.js">
+					<a href="javascript:void(0)" v-on:click="printHtml()"><i class="fa fa-print"></i>地图打印</a>
+				</li>	
+			</ul>
+		</div>
+		<div class="btn-group">
+			<button type="button" class="btn btn-link toolBarRight-btn dropdown-toggle" data-toggle="dropdown" aria-expanded="false">                                    
+				<i class="fa fa-cubes"></i>地图分析 <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu dropdown-menu-right toolBarRight-dropdown-menu" style="min-width: 110px;">
+				
+				<li class="widget-btn" data-widget="widgets/addmarker/widget.js">
+					<a href="javascript:void(0)" v-on:click="Rizhaofenxi()"><i class="fa fa-sun-o"></i>日照分析</a>
+				</li>
+				<li class="widget-btn" data-widget="widgets/mapCompare/widget.js">
+					<a href="javascript:void(0)" v-on:click="visibilityAnalysis()"><i class="fa fa-eye"></i>视域分析</a>
+				</li>
+				<li class="widget-btn" data-widget="widgets/mapCompare/widget.js">
+					<a href="javascript:void(0)" v-on:click="skylineAnalysis()"><i class="fa fa-certificate"></i>天际线分析</a>
+				</li>
+				<li class="widget-btn" data-widget="widgets/mapCompare/widget.js">
+					<a href="javascript:void(0)" v-on:click="historyAnalysis()"><i class="fa fa-history"></i>历史变迁</a>
+				</li>
+				<li class="widget-btn" data-widget="widgets/addmarker/widget.js">
+					<a href="javascript:void(0)" v-on:click="ClearAnalysis()"><i class="fa fa-minus-square-o"></i>清除分析</a>
+				</li>	
+
+			</ul>
+		</div>
+
+	</div>
+	<div class="infoview" style="display: none;">
+		<a href="javascript:void(0)" v-on:click="CloseHtml('.infoview')" title="关闭"  class="close">×</a>
+		<div>
+			<b>日期选择：</b>
+			<input id="selDate" type="date" value="2018-02-09" class="form-control">
+		</div>
+		<div>
+			<b>开始时间：</b>
+			<select id="startTime" class="form-control">
+				<option value="0">0:00</option>
+				<option value="2">2:00</option>
+				<option value="4">4:00</option>
+				<option value="6">6:00</option>
+				<option value="8">8:00</option>
+				<option value="10" selected>10:00</option>
+				<option value="12">12:00</option>
+				<option value="14">14:00</option>
+				<option value="16">16:00</option>
+				<option value="18">18:00</option>
+				<option value="20">20:00</option>
+				<option value="22">22:00</option>
+			</select>
+		</div>
+		<div>
+			<b>结束时间：</b>
+			<select id="endTime" class="form-control">
+				<option value="2">2:00</option>
+				<option value="4">4:00</option>
+				<option value="6">6:00</option>
+				<option value="8">8:00</option>
+				<option value="10">10:00</option>
+				<option value="12">12:00</option>
+				<option value="14">14:00</option>
+				<option value="16">16:00</option>
+				<option value="18" selected>18:00</option>
+				<option value="20">20:00</option>
+				<option value="22">22:00</option>
+				<option value="24">24:00</option>
+			</select>
+		</div>
+		<div style="margin-top:6px">
+			<input type="button" class="btn btn-primary" value="播放" v-on:click="stratPlay()"/>
+			<input type="button" class="btn btn-primary" value="暂停"  v-on:click="stopPlay()"/>
+		</div>
+	</div>
+	<div class="infoviewHistory" style="display: none;">
+		<a href="javascript:void(0)" v-on:click="CloseHtml('.infoviewHistory')" title="关闭"  class="close">×</a>
+		<i id="sliderStart"  v-on:click="sliderStart()" class="fa fa-play-circle-o" aria-hidden="true"></i>
+		<input type="hidden" class="slider-input" value="0" /><br />
+		
+	</div>
+	
+</div>
+
+<!--<div class="dropdown toolBarRight" id="tool">
+	<button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
+			data-toggle="dropdown">
+		主题
+		<span class="caret"></span>
+	</button>
+	<ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+		<li role="presentation">
+			<a role="menuitem" tabindex="-1" href="#">Java</a>
+		</li>
+		<li role="presentation">
+			<a role="menuitem" tabindex="-1" href="#">数据挖掘</a>
+		</li>
+		<li role="presentation">
+			<a role="menuitem" tabindex="-1" href="#">数据通信/网络</a>
+		</li>
+		<li role="presentation" class="divider"></li>
+		<li role="presentation">
+			<a role="menuitem" tabindex="-1" href="#">分离的链接</a>
+		</li>
+	</ul>
+</div>-->

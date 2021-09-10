@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.dao.com.lzctzk.address.dao.building.mapper.BtUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lzctzk.address.dao.building.entity.BtUser">
+        <id column="ID" property="id"/>
+        <result column="NAME" property="name"/>
+        <result column="PASSWORD" property="password"/>
+        <result column="DISPLAYNAME" property="displayname"/>
+        <result column="SEX" property="sex"/>
+        <result column="MAIL" property="mail"/>
+        <result column="MOBILE" property="mobile"/>
+        <result column="CODE" property="code"/>
+        <result column="AVATAE" property="avatae"/>
+        <result column="ROLEID" property="roleid"/>
+        <result column="ROLEIDS" property="roleids"/>
+        <result column="ONLINES" property="onlines"/>
+        <result column="ENABLE" property="enable"/>
+        <result column="LOGIONS" property="logions"/>
+        <result column="LASTLOGIONTIME" property="lastlogiontime"/>
+        <result column="LASTLOGIONIP" property="lastlogionip"/>
+        <result column="REGISTERTIME" property="registertime"/>
+        <result column="REGISTERIP" property="registerip"/>
+        <result column="REMARKS" property="remarks"/>
+        <result column="USER_GROUP" property="userGroup"/>
+        <result column="ISDELETE" property="isdelete"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        NAME, PASSWORD, DISPLAYNAME, SEX, MAIL, MOBILE, CODE, AVATAE, ROLEID, ROLEIDS, ONLINES, ENABLE, LOGIONS,
+        LASTLOGIONTIME, LASTLOGIONIP, REGISTERTIME, REGISTERIP, REMARKS, USER_GROUP, ID, ISDELETE
+    </sql>
+
+</mapper>

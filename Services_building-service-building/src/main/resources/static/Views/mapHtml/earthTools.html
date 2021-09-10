@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../../css/map/navigationBar.css"/>
+		<script type="text/javascript" src="../../js/plugins/jquery1.9.0.min.js"></script>
+		<script type="text/javascript" src="../../js/stampMap/navigationBar.js"></script>
+
+		<script type="text/javascript" src="../../js/stampMap/tool.js"></script>
+		<script type="text/javascript" src="../../js/stamplib/historySliderMgr.js"></script>
+		<script type="text/javascript" src="../../js/stamplib/sliderMgr.js"></script>
+		<script type="text/javascript" src="../../js/config/config.js"></script>
+		<script type="text/javascript" src="../../js/stampMap/logTool.js"></script>
+	</head>
+
+	<body>
+		<div id="earthTools">
+			<div id="LayerManager" class="toolItem" onclick="showRightMenu()" title="图层管理">
+				<img src="../../images/earthTools/normal/图层.png"  /><br/>
+				<span >图层</span>
+			</div>
+			<div id="ViewTranSetting" title="地形透明" onclick="ViewTranSettingClicked('ViewTranSetting')" class="toolItem">
+				<img src="../../images/earthTools/normal/透明.png" /><br/>
+				<span>透明</span>
+			</div>
+			<div id="ViewUndergroundMode" title="地下浏览" class="toolItem" onclick="ViewUndergroundModeClicked('ViewUndergroundMode')">
+				<img src="../../images/earthTools/normal/地下.png" /><br/>
+				<span>地下</span>
+			</div>
+
+			<div id="ViewOpenCollision" title="地图查询" onclick="showSecondSerchMenu()" class="toolItem">
+				<img src="../../images/earthTools/normal/属性.png" /><br/>
+				<span>查询</span>
+			</div>
+			<div id="ViewRefersToNorth" title="地图分析" onclick="showAnalysisMenu()" class="toolItem">
+				<img src="../../images/earthTools/normal/碰撞.png" /><br/>
+				<span>分析</span>
+			</div>
+			<div id="topView" title="空间量算" onclick="showToolMenu()" class="toolItem">
+				<img src="../../images/earthTools/normal/隧道.png" /><br/>
+				<span>量算</span>
+			</div>
+			<div id="ViewNumberTotal" title="数量统计" onclick="showTotalMenu()" class="toolItem">
+				<img src="../../images/earthTools/normal/联动.png" /><br/>
+				<span>统计</span>
+			</div>
+
+			<div id="systemSettingNow" title="地图输出" onclick="picturesClicked('pictures')" class="toolItem">
+				<img src="../../images/earthTools/normal/图例.png" /><br/>
+				<span>出图</span>
+			</div>
+		</div>
+	</body>
+
+</html>

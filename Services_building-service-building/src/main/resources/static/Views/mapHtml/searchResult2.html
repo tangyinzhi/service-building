@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+
+    <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/changeLayui.css"/>
+    <!-- jquery脚本1.9.1 -->
+    <script type="text/javascript" src="../../js/jquery.js"></script>
+    <script type="text/javascript" src="../../js/plugins/jquery.xml2json.js"></script>
+    <!-- layui -->
+    <script type="text/javascript" src="../../lib/layui/layui.js"></script>
+    <!--<script type="text/javascript" src="../../lib/layui/layui.all.js"></script>-->
+    <script type="text/javascript" src="../../js/stampMap/searchResult.js"></script>
+    <script type="text/javascript" src="../../js/stampMap/ModelDetail.js"></script>
+    <script type="text/javascript" src="../../js/config/config.js"></script>
+    <style>
+        body {
+            width: 470px;
+            margin-left: 15px;
+        }
+
+        .cardTitle {
+            font-weight: bolder;
+            color: #666;
+            font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+            font-size: 16px;
+            margin-top: 5px;
+            margin-left: 5px;
+        }
+
+    </style>
+</head>
+
+<body style="width: 470px">
+<div id="tablediv" class="enter" region="center">
+    <div class="cardTitle">搜索结果:</div>
+    <div id="dgDiv">
+        <table lay-filter="parse-table-demo" id="table"
+               class="layui-table">
+            <thead>
+            <tr>
+                <th lay-data="{field:'index', width:100}">序号</th>
+                <th lay-data="{field:'SE_NAME'}">模型名</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+
+            </tbody>
+        </table>
+        <div id="demo3"></div>
+    </div>
+</div>
+
+</body>
+<script>
+
+</script>
+</html>

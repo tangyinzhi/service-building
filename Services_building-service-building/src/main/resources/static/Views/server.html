@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link href="images/favicon.ico" type="image/x-icon" rel="Shortcut Icon"/>
+    <title>服务</title>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <link rel="stylesheet" href="../lib/layui/css/layui.css">
+    <link rel="stylesheet" href="../css/scroll-bar.css">
+    <link rel="stylesheet" href="../css/sub-page.css">
+    <link rel="stylesheet" href="../css/font.css">
+    <link rel="stylesheet" href="../lib/nprogress/nprogress.css">
+    <link rel="stylesheet" href="../css/changeLayui.css">
+    <link rev="stylesheet" rel="stylesheet" type="text/css" media="all" href="../css/style.css">
+    <link rev="stylesheet" rel="stylesheet" type="text/css" media="all" href="../css/zw.css">
+    <link rel="stylesheet" href="../lib/openlayer/ol.css" type="text/css">
+
+    <script type="text/javascript" src="../js/Utils/BaseURL.js"></script>
+    <script src="../js/config/config.js"></script>
+    <script src="../lib/layui/layui.js"></script>
+    <script src="../js/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="../lib/openlayer/ol.js"></script>
+    <script src="../js/sever/server.js"></script>
+</head>
+
+<div class="ok-body">
+    <div class="layui-card treeCard" id="treeCard">
+        <div class="layui-card-body">
+            <div id="tree" class="pg_nav"></div>
+        </div>
+    </div>
+    <div class="treeCardLeft " id="pg_right">
+        <!-- zhengweng -->
+        <div class="pg_dy" id="listTab">
+            <div class="pg_fw_a">
+                <div class="pg_fw_aimg"><img src="../images/icon1.jpg" width="314" height="234" alt=""></div>
+                <div class="pg_fw_atxt">
+                    <h2 name="servicesFullname"></h2>
+                    <div name="servicesDescription">
+                    </div>
+                    <p><span>创建者：</span><span name="createId"></span> 最后修改：<em name="handerDate"></em></p>
+                    <p><span>服务类型：</span><span name="servicesType"></span> 级 别：<em id="securityLevel"></em></p>
+                    <a href="javascript:void(0)" id="next" class="anniu_c">立即进入</a>
+                    <!--<a href="main.html" class="anniu_c">返回列表</a>-->
+                </div>
+            </div>
+            <!---->
+            <div class="pg_fw_b dib_fz">
+                <a href="javascript:;" class="pg_nuw_a">描述信息<span></span></a>
+            </div>
+
+            <div class="pg_fw_c" name="servicesDescription">
+            </div>
+            <div class="pg_fw_b dib_fz">
+                <a href="javascript:;" class="pg_nuw_a">地图服务<span></span></a>
+            </div>
+            <div class="pg_fw_c">
+                服务地址:
+                <br>
+                <a href="javascript:;" name="servicesAddr"></a>
+                <br> 帮助地址:
+                <br>
+                <a href="javascript:;" name="servicesAddr"></a>
+                <br> 示例地址:
+                <br>
+                <a href="javascript:;" name="servicesSampleAddr"></a>
+            </div>
+            <div class="pg_fw_b dib_fz">
+                <a href="javascript:;" class="pg_nuw_a">关键词<span></span></a>
+            </div>
+            <div class="pg_fw_c" name="keyword">泸州,建筑,地图</div>
+
+        </div>
+        <div class="pg_dy" id="mapDiv" style="display: none">
+            <div id="mapShowBtn">
+                <a href="javascript:void(0)"   id="last" class="anniu_c">返回上一页</a>
+            </div>
+            <div id = "map" style="width: 100%;height: 600px"></div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

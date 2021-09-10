@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.dao.com.lzctzk.address.dao.building.mapper.RelaAttachBuildingMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lzctzk.address.dao.building.entity.RelaAttachBuilding">
+        <id column="RAB_ID" property="rabId"/>
+        <result column="RAB_OA_ID" property="rabOaId"/>
+        <result column="RAB_OB_ID" property="rabObId"/>
+        <result column="RAB_LAST_TIME" property="rabLastTime"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        RAB_ID, RAB_OA_ID, RAB_OB_ID, RAB_LAST_TIME
+    </sql>
+
+</mapper>

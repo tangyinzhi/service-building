@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.dao.building.mapper.OtAttachMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lzctzk.address.dao.building.entity.OtAttach">
+        <id column="OA_ID" property="oaId"/>
+        <result column="OA_PROF_NAME" property="oaProfName"/>
+        <result column="OA_FPF_NAME" property="oaFpfName"/>
+        <result column="OA_SAVE_NAME" property="oaSaveName"/>
+        <result column="OA_PATH" property="oaPath"/>
+        <result column="OA_TYPE" property="oaType"/>
+        <result column="OA_SIZE" property="oaSize"/>
+        <result column="OA_REMARK" property="oaRemark"/>
+        <result column="OA_STATUS" property="oaStatus"/>
+        <result column="OA_UPLOAD_TIME" property="oaUploadTime"/>
+        <result column="OA_IS_DELETE" property="oaIsDelete"/>
+        <result column="OA_RELE_ID" property="oaReleId"/>
+        <result column="OA_RELE_TYPE" property="oaReleType"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        OA_ID, OA_PROF_NAME, OA_FPF_NAME, OA_SAVE_NAME, OA_PATH, OA_TYPE, OA_SIZE, OA_REMARK, OA_STATUS, OA_UPLOAD_TIME,
+        OA_IS_DELETE, OA_RELE_ID, OA_RELE_TYPE
+    </sql>
+
+</mapper>

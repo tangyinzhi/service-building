@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="max-age=60000">
+    <title>建筑物地图</title>
+    <link rel="stylesheet" href="../lib/layui/css/layui.css"/>
+    <script type="text/javascript" src="../lib/layui/layui.js"></script>
+    <script type="text/javascript" src="../js/Utils/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/buildname_map.css">
+    <link rel="stylesheet" href="../lib/openlayer/ol.css" type="text/css">
+    <script src="../lib/openlayer/ol.js"></script>
+	<script src="../js/config/config.js"></script>
+    <script type="text/javascript" src="../js/Utils/BaseURL.js"></script>
+    <script type="text/javascript" src="../js/Utils/utils.js"></script>
+    <script type="text/javascript" src="../js/building/buildname_map.js"></script>
+	<script src="../js/config/config.js"></script>
+    <script src="../js/Utils/formInit.js"></script>
+ 
+    <style>
+        .layui-form-mid{
+            margin-right: 0px;
+        }
+        .ol-zoom {
+            top: 35em;
+            left: calc(100% - 3em);
+        }
+        .ol-control{
+            background-color: #fff;
+        }
+        .ol-control:hover {
+            background-color: rgba(255,255,255,1);
+        }
+        .ol-control button:hover{background-color: rgba(255,255,255,1);}
+        .ol-control button{
+            color: #000;
+            background-color: #fff;
+            box-shadow: #bfbfbf 0 0 7px;
+            display: none;
+        }
+        .ol-control input{
+            display:block;
+            margin-top: -5px;
+            text-decoration:none;
+            text-align:center;
+            width: 2.7em;
+            background-color:#fff;
+            border:none;
+            padding-bottom: 7px;
+            padding-left: 3px;
+            font-size: 0.7em;
+        }
+        hr{background-color: #bfbfbf;margin: 0 2px;}
+		 .maplist{
+            margin-top: -33.5em;
+            margin-left: -0.4em;
+            box-shadow: #bfbfbf 0 0 7px;
+            text-align: center;
+        }
+        .ol-rotate {
+            top: calc(100% - 5em);
+            right:calc(100% - 4.5em);
+        }
+        .address-text {text-align:left;width: 64px;}
+        .item {height: 20px;}
+        #guidename{-webkit-tap-highlight-color:transparent;}
+        /*设置弹出框样式*/
+        .ol-popup {
+            height: 125px;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.5);
+            -webkit-filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 1px 4px rgba(0,0,0,0.2));
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #cccccc;
+            bottom: 12px;
+            left: -50px;
+            font:  italic bold 12px ;
+            min-width: 210px;
+        }
+        .ol-popup:after, .ol-popup:before {
+            top: 100%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+        .ol-popup:after {
+            border-top-color: rgba(0, 0, 0, 0.5);
+            border-width: 10px;
+            left: 48px;
+            margin-left: -10px;
+        }
+        .ol-popup:before {
+            border-top-color: #cccccc;
+            border-width: 11px;
+            left: 48px;
+            margin-left: -11px;
+        }
+        .ol-popup-closer {
+            text-decoration: none;
+            position: absolute;
+            top: 2px;
+            right: 8px;
+        }
+        .ol-popup-closer:after {
+            content: "✖";
+        }
+
+        .item{
+            margin-bottom: 5px;
+        }
+        .layui-field-box {
+            padding: 2px 8px;
+        }
+        .layui-tab{
+           margin: 0;
+        }
+
+
+    </style>
+
+</head>
+
+<body style="overflow-y: hidden">
+<div id="mapDiv" style="width: 100%;height:100%;text-align: center">
+
+</div>
+<div class="ol-zoom ol-unselectable ol-control maplist" id="mtab" >
+
+  <!--  <div id="loupai" style="padding-top: 5px" onclick="AddLayer('build_map')">
+        &lt;!&ndash;<img id="build_map" class="mimg" src="../images/map/loupai01.png">&ndash;&gt;
+        <i id="build_map" class="layui-icon layui-icon-home map_icon" ></i>
+        <input type="text" value="建筑" readonly="readonly" style="margin-top: 2px">
+    </div>
+    <hr>
+    <div id="yingxi" style="padding-top: 5px">
+        &lt;!&ndash;<img id="vido_map" class="mimg" src="../images/map/yingxiang01.png">&ndash;&gt;
+        <i id="vido_map" class="layui-icon layui-icon-picture map_icon"></i>
+        <input type="text" value="影像" readonly="readonly"  style="margin-top: 2px">
+    </div>
+    <hr>
+    <div id="guge" style="padding-top: 5px">
+        &lt;!&ndash;<img id="gu" class="mimg" src="../images/map/gu01.png">&ndash;&gt;
+        <i id="gu" class="layui-icon layui-icon-website map_icon"></i>
+        <input type="text" value="谷歌" readonly="readonly" style="margin-top: 2px">
+    </div>
+    <hr>
+    <div id="lupai" style="padding-top: 5px">
+    &lt;!&ndash;<img id="point_map" class="mimg" src="../images/map/pai01.png">&ndash;&gt;
+        <i id="point_map" class="layui-icon layui-icon-note map_icon"></i>
+    <input type="text" value="筛选" readonly="readonly" style="margin-top: 2px">
+    </div>
+    <hr>-->
+	<div id="luwang" style="padding-top: 5px">
+	    <!--<img id="" class="mimg" src="../images/map/lu01.png">-->
+        <i id="road_map" class="layui-icon layui-icon-add-1 map_icon"></i>
+	    <input type="text" value="新增" readonly="readonly" style="margin-top: 2px">
+	</div>
+	<hr>
+    <div id="louedit" style="padding-top: 5px" >
+        <!--<img id="edit_map" class="mimg" src="../images/map/loupai01.png">-->
+        <i id="edit_map" class="layui-icon layui-icon-survey map_icon"></i>
+        <input type="text" value="编辑" readonly="readonly" style="margin-top: 2px">
+    </div>
+    <hr>
+    <div id="tongji" style="padding-top: 5px" >
+        <!--<img id="total_map" class="mimg" src="../images/map/lu01.png">-->
+        <i id="total_map" class="layui-icon layui-icon-list map_icon"></i>
+        <input type="text" value="统计" readonly="readonly" style="margin-top: 2px">
+    </div>
+    <hr>
+    <div id="chaxun" style="padding-top: 5px">
+        <!--<img id="query_map" class="mimg" src="../images/map/loupai01.png">-->
+        <i id="query_map" class="layui-icon layui-icon-search map_icon"></i>
+        <input type="text" value="查询" readonly="readonly" style="margin-top: 2px">
+    </div>
+
+
+
+</div>
+
+<div class="countpage" id="numbox" hidden>
+    <div >
+        <input id="search_list" type="text" name="launchUnit" lay-verify="title" autocomplete="off"
+               placeholder="请输入搜索的建构筑物名称"
+               class="layui-input inputSearch">
+        <div class="search" id="buildsearch" style="float: right;margin-top: -33px;" >
+            <img src="../images/map/listseah.png" style="width: 34px">
+            <!--<i class="layui-icon layui-icon-search" style="color: #bfbfbf;"></i>-->
+        </div>
+    </div>
+    <div class="layui-tab" style="width: 100%;">
+        <div class="layui-tab-content" id="ld_all" style="padding: 0px">
+            <ul class="flow-default" id="ldself_all"></ul>
+        </div>
+    </div>
+</div>
+
+<div class="countpage" id="maptotal" style="width: 500px;height: 460px;" hidden>
+    <i id="countclose" class="layui-icon layui-icon-close" style="font-size: 25px;right: 0px;position: absolute;top: 5px;"></i>
+    <div id="countList" style="height: 100%;margin-left: 28px;padding-top: 10px;"></div>
+</div>
+
+
+<script type="text/javascript" src="../js/Utils/popup.js"></script>
+<script>
+
+    function AddLayer(value){
+        var newv = value.charAt(value.length-1);
+        if ($('#'+value).is('.check')) {
+            $('#'+value).removeClass('check');
+            $('#'+value).css("color","#0D0D0D");
+            map.removeLayer(LayerArray[newv]);
+        } else {
+            $('#'+value).addClass('check');
+            $('#'+value).css("color","#1E9FFF");
+           map.addLayer(LayerArray[newv]);
+            /*var wmsLayer = new ol.layer.Tile({
+                source: new ol.source.TileArcGISRest({
+                    // url: BUILDSERVICE
+                    url: BUILDTEST
+                })
+            });
+            LayerArray.push(wmsLayer);
+            map.addLayer(wmsLayer);*/
+        }
+    }
+</script>
+
+</body>
+
+</html>

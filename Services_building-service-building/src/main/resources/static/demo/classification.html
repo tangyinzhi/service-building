@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cesium工具箱</title>
+    <script type="text/javascript">
+        try {
+            // 重命名 Electron 提供的 require
+            window.nodeRequire = require;
+            delete window.require;
+            delete window.exports;
+            delete window.module;
+        } catch (e) {
+
+        }
+    </script>
+    <script type="text/javascript" data-main="../main" src="../js/require.min.js"></script>
+    <style type="text/css">
+        .mapcontainer {
+            position: absolute;
+            width: 100%;
+            bottom: 40px;
+            top: 80px;
+        }
+
+        .row {
+            margin-top: 2px;
+        }
+
+        .glyphicon {
+            margin-right: 4px !important;
+        }
+
+        #sceneTreeContainer {
+            position: absolute;
+            min-width: 230px;
+            top: 20px;
+            bottom: 40px;
+            left: 30px;
+            background: rgba(0, 0, 0, 0.48);
+            border-radius: 4px;
+            padding-top: 10px;
+        }
+
+        #sceneTreeContainer2 {
+            position: absolute;
+            top: 40px;
+            bottom: 10px;
+            left: 4px;
+            right: 4px;
+            overflow: auto;
+        }
+
+        #sceneTree {
+            background: unset !important;
+        }
+
+        #sceneTreeContainer2::-webkit-scrollbar {
+            /*滚动条整体样式*/
+            width: 10px;
+            /*高宽分别对应横竖滚动条的尺寸*/
+            height: 1px;
+        }
+
+        #sceneTreeContainer2::-webkit-scrollbar-thumb {
+            /*滚动条里面小方块*/
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+            background: #535353;
+        }
+
+        #sceneTreeContainer2::-webkit-scrollbar-track {
+            /*滚动条里面轨道*/
+            -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            background: #ededed00;
+        }
+
+        .btnreset {
+            margin-left: 10px;
+            cursor: pointer;
+            color: gray !important;
+        }
+
+            .btnreset:hover {
+                color: white !important;
+            }
+    </style>
+
+    <body>
+        <div id="app">
+            <titlebar ref="titlebar" title="Cesium工具箱" subtitle="单体化示例"></titlebar>
+
+            <div class="mapcontainer">
+                <map3d ref=map3d></map3d>
+                <mousepos ref="mousepos"></mousepos>
+
+            </div>
+            <statusbar ref="statusbar"></statusbar>
+            <stylewindow ref="stylewindow"></stylewindow>
+            <infowindow ref="infowindow"> </infowindow>
+        </div>
+    </body>
+
+</html>

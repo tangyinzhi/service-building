@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>属性查看</title>
+    <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css">
+    <!-- layui -->
+    <script type="text/javascript" src="../../lib/layui/layui.js"></script>
+
+    <script type="text/javascript" src="../../js/stampMap/simpleBuild.js"></script>
+
+
+
+    <style>
+        body{
+            width: 280px;
+            text-align: center;
+            height: 170px;
+        }
+        .layui-form-label {
+            padding: 9px 0px;
+            font-weight: bolder;
+            color: #666;
+            margin-left: 15px;
+            font-size: 14px;
+            width: 100%;text-align: left;
+            font-family: "Helvetica Neue", Helvetica, Tahoma, Arial, "Microsoft Yahei", "Hiragino Sans GB", "WenQuanYi Micro Hei", sans-serif;
+        }
+        .layui-btn-group{
+
+        }
+    </style>
+</head>
+<body style='width: 300px;text-align: center; height: 250px'>
+<form class="layui-form" action="">
+    <div class="layui-form-item">
+        <label class='layui-form-label'>建筑名称：<span id="obName"></span></label>
+
+        <label class='layui-form-label' >结构类型：<span id="obStru"></span></label>
+
+        <label class='layui-form-label'>地址：<span id="obAddr"></span></label>
+        <div class='layui-btn-group' style="">
+            <buttonn type="button" onclick="seeBuild()" class="layui-btn layui-btn-sm layui-btn-normal" >
+                <i class="layui-icon layui-icon-form"></i>查看
+            </buttonn>
+        </div>
+    </div>
+</form>
+</body>
+</html>

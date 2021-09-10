@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.dao.com.lzctzk.address.dao.building.mapper.BtDataServiceMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lzctzk.address.dao.building.entity.BtDataService">
+        <id column="ID" property="id"/>
+        <result column="SERVICES_NAME" property="servicesName"/>
+        <result column="SERVICES_FULLNAME" property="servicesFullname"/>
+        <result column="SERVICES_TYPE" property="servicesType"/>
+        <result column="SERVICES_DESCRIPTION" property="servicesDescription"/>
+        <result column="SERVICES_ADDR" property="servicesAddr"/>
+        <result column="SERVICES_HELP_ADDR" property="servicesHelpAddr"/>
+        <result column="SERVICES_SAMPLE_ADDR" property="servicesSampleAddr"/>
+        <result column="HANDER_DATE" property="handerDate"/>
+        <result column="HANDER_ID" property="handerId"/>
+        <result column="CREATE_DATE" property="createDate"/>
+        <result column="CREATE_ID" property="createId"/>
+        <result column="VISITS_NUMBER" property="visitsNumber"/>
+        <result column="SECURITY_LEVEL" property="securityLevel"/>
+        <result column="SERVICES_DETAILS" property="servicesDetails"/>
+        <result column="KEYWORD" property="keyword"/>
+        <result column="MAPRANGE" property="maprange"/>
+        <result column="SYSTEM_ID" property="systemId"/>
+        <result column="SYSTEM_NAME" property="systemName"/>
+        <result column="ISDELETE" property="isdelete"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, SERVICES_NAME, SERVICES_FULLNAME, SERVICES_TYPE, SERVICES_DESCRIPTION, SERVICES_ADDR, SERVICES_HELP_ADDR,
+        SERVICES_SAMPLE_ADDR, HANDER_DATE, HANDER_ID, CREATE_DATE, CREATE_ID, VISITS_NUMBER, SECURITY_LEVEL,
+        SERVICES_DETAILS, KEYWORD, MAPRANGE, SYSTEM_ID, SYSTEM_NAME, ISDELETE
+    </sql>
+
+</mapper>

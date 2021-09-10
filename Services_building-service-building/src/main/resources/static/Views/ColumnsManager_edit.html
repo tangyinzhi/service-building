@@ -1,0 +1,121 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>泸州市城市公共基础数据库</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../lib/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="../css/home.css">
+    <script src="../js/config/config.js"></script>
+    <script src="../lib/layui/layui.js"></script>
+    <script src="../js/tool.js"></script>
+    <script src="../js/login/jquery-1.9.1.min.js"></script>
+    <script src="../js/login/jquery.cookie.js"></script>
+    <script src="../js/login/jquery.jsoncookie.js"></script>
+    <script src="../js/user.js"></script>
+    <script src="../js/ColumnsManager/columnsManagerEdit.js"></script>
+    <style>
+        .layui-form-mid {
+            float: left;
+            display: block;
+            padding: 0px 0 !important;
+            line-height: 20px;
+            margin-right: 10px;
+        }
+
+        .layui-form-radio {
+            margin-top: 6px;
+            margin-left: 6px !important;
+        }
+    </style>
+</head>
+<body class="childrenBody" style="font-size: 12px;margin: 10px 10px 0;">
+
+    <form class="layui-form layui-form-pane">
+        <input id="id" name="id" type="hidden" value="">
+        <input id="pageFlag" type="hidden" value="">
+        <input id="tableNameS" name="tableNameS" type="hidden" value="OT_BUILDING">
+        <input id="resParentCount" type="hidden" value="">
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label"><font style="color:red">*</font>字段名</label>
+                <div class="layui-input-inline">
+                    <input type="text" id="columnNameS" name="columnNameS" class="layui-input" maxlength="20" value="" lay-verify="required|Name|ColumnName" placeholder="请输入字段名">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label"><font style="color:red">*</font>是否为空</label>
+            <div class="layui-input-block">
+                <input type="radio" name="nullableS" value="Y" title="为空">
+                <input type="radio" name="nullableS" value="N" title="不为空" checked>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-inline">
+                <label class="layui-form-label"><font style="color:red">*</font>数据类型</label>
+                <div class="layui-input-inline">
+                    <select id="dataType" name="dataType" lay-verify="required">
+                        <option value="">请选择</option>
+                        <option value="CHAR">CHAR(固定长度字符串,最大长度2000) </option>
+                        <option value="VARCHAR2">VARCHAR2(可变长度的字符串,最大长度4000)</option>
+                        <option value="NCHAR">NCHAR(根据字符集而定的固定长度字符串,最大长度2000)</option>
+                        <option value="DATE">DATE(日期（日-月-年）,DD-MM-YY（HH-MI-SS）) </option>
+                        <option value="LONG">LONG(超长字符串,最大长度2G（231-1）)</option>
+                        <option value="RAW">RAW(固定长度的二进制数据,最大长度2000) </option>
+                        <option value="TIMESTAMP">TIMESTAMP(时间戳)</option>
+                        <option value="BLOB">BLOB(二进制数据,最大长度4G)</option>
+                        <option value="CLOB">CLOB(字符数据,最大长度4G)</option>
+                        <option value="NCLOB">NCLOB(根据字符集而定的字符数据,最大长度4G)</option>
+                        <option value="BFILE">BFILE(存放在数据库外的二进制数据,最大长度4G)</option>
+                        <option value="NUMBER">NUMBER(P,S)(数字类型,P为整数位，S为小数位)</option>
+                        <option value="DECIMAL">DECIMAL(P,S)(数字类型,P为整数位，S为小数位)</option>
+                        <option value="INTEGER">INTEGER(整数类型,小的整数)</option>
+                        <option value="FLOAT">FLOAT(浮点数类型, NUMBER(38)，双精度)</option>
+                        <option value="REAL">REAL(实数类型,NUMBER(63)，精度更高)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">数据存储长度</label>
+            <div class="layui-input-block">
+                <input type="text" name="dataLength" id="dataLength" placeholder="请输入数据存储长度" autocomplete="off" class="layui-input" lay-verify="number">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">数据精确度</label>
+            <div class="layui-input-block">
+                <input type="text" name="dataScale" id="dataScale" placeholder="请输入数据数据精确度" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否可见</label>
+            <div class="layui-input-block">
+                <input type="radio" name="nullenable" value="Y" title="可见">
+                <input type="radio" name="nullenable" value="N" title="不可见" checked>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">是否有枚举值</label>
+            <div class="layui-input-block">
+                <input type="radio" name="nullenum" value="Y" title="是">
+                <input type="radio" name="nullenum" value="N" title="否" checked>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">字段注释</label>
+            <div class="layui-input-block">
+                <textarea name="comments" id="comments" placeholder="请输入内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+
+        <div class="layui-form-item" style="text-align: center;">
+            <button class="layui-btn layui-btn-normal" lay-submit="" lay-filter="saveRes">保存</button>
+            <button id="cancle" class="layui-btn layui-btn-primary">取消</button>
+        </div>
+    </form>
+
+</body>
+</html>

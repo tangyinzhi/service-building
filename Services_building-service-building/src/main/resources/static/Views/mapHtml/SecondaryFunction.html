@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../../lib/layui/css/layui.css">
+    <link rel="stylesheet" type="text/css" href="../../css/changeLayui.css"/>
+    <!--<link rel="stylesheet" type="text/css" href="../../css/map/secondFun.css">-->
+    <!-- jquery脚本1.9.1 -->
+    <script type="text/javascript" src="../../js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="../../js/plugins/jquery.xml2json.js"></script>
+    <!-- layui -->
+    <script type="text/javascript" src="../../lib/layui/layui.js"></script>
+    <!-- 分析 -->
+    <script type="text/javascript" src="../../js/stampMap/analysis.js"></script>
+    <!--  -->
+    <script type="text/javascript" src="../../js/stamplib/userdata.js"></script>
+
+    <script type="text/javascript" src="../../js/common/common.js"></script>
+
+    <!-- 点击事件 -->
+    <script type="text/javascript" src="../../js/stampMap/secondFun.js"></script>
+    <!-- 模型 -->
+    <script src="../../js/stampMap/ModelDetail.js"></script>
+
+    <script type="text/javascript" src="../../js/stampMap/tool.js"></script>
+    <script type="text/javascript" src="../../js/config/config.js"></script>
+    <script type="text/javascript" src="../../js/stampMap/logTool.js"></script>
+    <style>
+        ul > li > img {
+            height: 18px;
+            width: 18px;
+        }
+
+        .layui-nav-tree {
+            width: 110px;
+            height: 190px;
+        }
+
+        .layui-nav-tree .layui-nav-item a:hover {
+            background-color: #1c64b0;
+        }
+
+        .selected {
+            background-color: #1c64b0;
+        }
+    </style>
+</head>
+<body>
+<div id="secondfun">
+    <div id="spanSearch">
+        <ul class="layui-nav layui-nav-tree layui-inline" style="margin-right: 10px;">
+            <li class="layui-nav-item"><a href="javascript:queryPropertyClicked();">属性查询</a></li>
+            <li class="layui-nav-item"><a href="javascript:polygonSearchClicked();">空间查询</a></li>
+            <li class="layui-nav-item"><a href="javascript:classifiedSearchClicked();">分类查询</a></li>
+        </ul>
+    </div>
+    <div id="spanAnalysis">
+        <ul class="layui-nav layui-nav-tree layui-inline" style="margin-right: 10px;">
+            <li class="layui-nav-item"><a href="javascript:historyDataClicked('historyData');">历史变迁</a></li>
+            <li class="layui-nav-item "><a href="javascript:mViewshedClicked('mViewshed');">视域分析</a></li>
+            <li class="layui-nav-item"><a href="javascript:mShinningClicked('mShinning');">阴影分析</a></li>
+            <li class="layui-nav-item"><a href="javascript:mSkylineClicked('mSkyline');">天际线分析</a></li>
+        </ul>
+    </div>
+    <div id="spanTool">
+        <ul class="layui-nav layui-nav-tree layui-inline" style="margin-right: 10px;">
+            <li class="layui-nav-item"><a href="javascript:mHorizontalDistClicked('mHorizontalDist');">水平距离</a></li>
+            <li class="layui-nav-item "><a href="javascript:mHeightClicked('mHeight');">垂直距离</a></li>
+            i>
+            <li class="layui-nav-item"><a href="javascript:mLineLengthClicked('mLineLength');">空间距离</a></li>
+            <li class="layui-nav-item "><a href="javascript:mSpatialAreaClicked('mSpatialArea');">空间面积</a></li>
+            i>
+        </ul>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,168 @@
+﻿<nav class="navbar navbar-default titlebar">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#" style="padding-top: 8px;" data-toggle="dropdown">
+                <img style="display: inline-block;" src="/images/favicon.ico">
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                <li v-show="!nohome"><a href="/index.html">数据处理</a></li>
+                <li v-show="!nohome"><a href="/server/images.html">服务管理</a></li>
+                <li v-show="!nohome" role="separator" class="divider"></li>
+                <li><a href="#" @click="help()">帮助文档</a></li>
+                <li><a href="#" @click="updatehis()">更新说明</a></li>
+                <li><a href="#" @click="about()">关于</a></li>
+                <li v-show="!nohome" role="separator" class="divider"></li>
+                <li><a href="#" href="/authinfo.html">授权信息</a></li>
+                <!--<li><a href="#" @click="authcode()">离线授权</a></li>-->
+                <li><a href="#" @click="service()">付费服务</a></li>
+                <li><a href="#" @click="sysbrowser('http://www.cesiumlab.com')">Cesiumlab官网</a></li>
+            </ul>
+            <a class="navbar-brand">
+                {{title}}
+                <small><small><small>(V{{version}})</small></small></small>
+
+                <small>{{subtitle}}</small>
+            </a>
+        </div>
+        <ul class="nav navbar-nav navbar-right">
+            <li v-if="iselectron && authinfo && authinfo.user && authinfo.user.name">
+                <div class="sysbtn">
+                    <a class="btn btn-xs   btn-primary" href="/authinfo.html" data-toggle="tooltip" data-placement="bottom" title="授权信息">
+                        <span class="glyphicon  glyphicon-user">{{authinfo.user.name}}</span>
+                    </a>
+                </div>
+            </li>
+            <li v-show="!nohome">
+                <div class="sysbtn">
+                    <a class="btn btn-xs   btn-primary" :href="nohome ? '#':'/index.html'" data-toggle="tooltip" data-placement="bottom" title="返回首页">
+                        <span class="glyphicon  glyphicon-home"></span>
+                    </a>
+                </div>
+            </li>
+            <li v-if="iselectron">
+                <div class="sysbtn">
+                    <a class="btn btn-xs   btn-primary" @click='mini' data-toggle="tooltip" data-placement="bottom" title="最小化">
+                        <span class="glyphicon  glyphicon-minus"></span>
+                    </a>
+                </div>
+            </li>
+            <li v-if="iselectron">
+                <div class="sysbtn">
+                    <a class="btn btn-xs  btn-primary" @click='maxi' data-toggle="tooltip" data-placement="bottom" title="最大化">
+                        <span class="glyphicon glyphicon-unchecked"></span>
+                    </a>
+                </div>
+            </li>
+            <li v-if="iselectron">
+                <div class="sysbtn">
+                    <a class="btn btn-xs  btn-primary" @click='exit' data-toggle="tooltip" data-placement="bottom" title="退出程序">
+                        <span class="glyphicon  glyphicon-remove"></span>
+                    </a>
+                </div>
+            </li>
+        </ul>
+        <div class="modal fade" id="modal_about" tabindex="-1" role="dialog">
+            <div class="modal-dialog  modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">关于</h4>
+                    </div>
+                    <div class="modal-body" style="padding: 10px;">
+                        <center>
+                            <h3>Cesium实验室</h3><small>您的关注是我们不断发展的动力</small>
+                        </center>
+                        <center><img src="/images/qqcode.jpg" style="width: 228px;"></center>
+                        <center> Copyright© 2018 <a href="#" @click="sysbrowser('https://www.bjxbsj.cn')">北京西部世界科技公司 </a></center>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal_udpatedis" tabindex="-1" role="dialog">
+            <div class="modal-dialog " role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">更新说明</h4>
+                    </div>
+                    <div class="modal-body" style="padding: 10px; max-height: 450px;overflow: auto;">
+                        <div v-for="(u,$index) in updates">
+                            <p>
+                                <code> {{u.version}}</code>
+                            </p>
+                            <p>
+                                <ul>
+                                    <li v-for="(i,$index) in u.items">
+                                        {{i}}
+                                    </li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal_login" tabindex="-1" role="dialog" data-backdrop="false" data-keyboard="false">
+            <div class="modal-dialog  modal-sm" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">用户登陆</h4>
+                    </div>
+                    <div class="modal-body" style="padding: 10px;">
+                        <form class="form-horizontal" @submit.prevent="login()">
+                            <div class="form-group">
+                                <label class="control-label col-sm-4">手机号:</label>
+                                <div class="col col-sm-8">
+                                    <input type="text" class="form-control" placeholder="请输入您的手机号" v-model="user.phone">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-sm-4">密码:</label>
+                                <div class="col col-sm-8">
+                                    <input type="password" class="form-control" placeholder="请输入您的密码" v-model="user.password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col col-sm-12">
+                                    <button class="btn btn-block btn-primary" type="submit">登陆</button>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col col-sm-12">
+                                    <center>
+                                        <a href="#" @click="register()" style="margin-right: 10px;">用户注册</a>
+                                        <a href="#" @click="repass()" style="margin-right: 10px;">修改密码</a>
+                                        <a href="#" @click="authcode()" style="margin-right: 10px;"><code>付费服务</code></a>
+                                        <a href="#" @click="exit()" style="margin-right: 10px;">退出</a>
+                                    </center>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modal_authcode" tabindex="-1" role="dialog">
+            <div class="modal-dialog  " role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">付费服务</h4>
+                    </div>
+                    <div class="modal-body" style="padding: 10px;">
+                        <h4>
+                            <a href="#" @click="service()">
+                                最新价格表
+                            </a>
+                        </h4>
+                        <h4>本机机器码：</h4>
+                        <div class="input-group">
+                            <input class="form-control bg-warning" v-model="machinecode" readonly="">
+                            <span class="input-group-addon " style="cursor: pointer;" @click="copycode()"><span class="glyphicon glyphicon-copy"></span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</nav>

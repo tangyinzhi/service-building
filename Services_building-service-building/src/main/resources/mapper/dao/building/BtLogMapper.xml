@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lzctzk.address.dao.com.lzctzk.address.dao.building.mapper.BtLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.lzctzk.address.dao.building.entity.BtLog">
+        <id column="ID" property="id"/>
+        <result column="LOGUSER" property="loguser"/>
+        <result column="LOG_IP" property="logIp"/>
+        <result column="LOG_TYPE" property="logType"/>
+        <result column="LOG_TIME" property="logTime"/>
+        <result column="LOG_MESSAGE" property="logMessage"/>
+        <result column="PLUG_NAME" property="plugName"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        ID, LOGUSER, LOG_IP, LOG_TYPE, LOG_TIME, LOG_MESSAGE, PLUG_NAME
+    </sql>
+
+</mapper>
